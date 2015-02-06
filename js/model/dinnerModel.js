@@ -3,20 +3,25 @@ var DinnerModel = function() {
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
-
+	var numberOfGuests = 1;
+	var menu = [];
 
 	this.setNumberOfGuests = function(num) {
-		//TODO Lab 2
+		numberOfGuests = num;
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
-		//TODO Lab 2
-	}
+		return numberOfGuests;
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		//TODO Lab 2
+		for(key in menu) {
+			if(menu[key].type == type) {
+					//Continue here!!!
+			}
+			
+		}
 	}
 
 	//Returns all the dishes on the menu.
@@ -37,7 +42,19 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		//TODO Lab 2 
+		var dish = getDish(id);
+
+		for(key in menu) {
+			if(menu[key].id != dish.id) {
+				if(menu[key].type == dish.type) {
+					removeDishFromMenu(menu[key].id);
+				}
+			}
+			else {
+				return;
+			}
+		}
+		menu.push(dish);
 	}
 
 	//Removes dish from menu
@@ -291,7 +308,7 @@ var DinnerModel = function() {
 			}]
 		},{
 		'id':200,
-		'name':'Chocolat Ice cream',
+		'name':'Chocolate Ice cream',
 		'type':'dessert',
 		'image':'icecream.jpg',
 		'description':"Here is how you make it... Lore ipsum...",
