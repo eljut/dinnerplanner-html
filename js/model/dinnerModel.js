@@ -18,20 +18,24 @@ var DinnerModel = function() {
 	this.getSelectedDish = function(type) {
 		for(key in menu) {
 			if(menu[key].type == type) {
-					//Continue here!!!
+				return menu[key];
 			}
-			
 		}
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		//TODO Lab 2
+		return menu;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
-		//TODO Lab 2
+		var ingredients = [];
+
+		//Could be wrong way to do it, we'll see.
+		for(key in menu) {
+			ingredients.push(menu[key].ingredients);
+		}
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
