@@ -1,0 +1,29 @@
+.container {
+	width: 100%;
+	padding: 0;
+}
+
+.navbar {
+	width: 100%;
+	border: 2px solid;
+	padding-top: 20px;
+	padding-bottom: 30px;
+	border-radius: 0;
+	background: rgba(235,235,235,1);
+}
+
+.navbar-transparent {
+	background: rgba(250,230,40,0.3);
+}
+
+.navbar-brand {
+	font-size: 50px;
+	color: #000 !important;
+}
+
+.navbar-text {
+	margin-top: 20px;
+	margin-bottom: 0;
+	font-size: 20px;
+	font-style: italic;
+}

@@ -3,39 +3,42 @@ var DinnerModel = function() {
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
-	var numberOfGuests = 1;
-	var menu = [];
+	this.numberOfGuests = 1;
+	this.menu = [];
 
 	this.setNumberOfGuests = function(num) {
-		numberOfGuests = num;
+		if(num > 0) {
+			numberOfGuests = num;
+		}
 	}
 
 	// should return 
 	this.getNumberOfGuests = function() {
-		return numberOfGuests;
+		return parseInt(this.numberOfGuests);
+	}
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		for(key in menu) {
-			if(menu[key].type == type) {
-				return menu[key];
+			if(this.menu[key].type == type) {
+				return this.menu[key];
 			}
 		}
 	}
 
 	//Returns all the dishes on the menu.
 	this.getFullMenu = function() {
-		return menu;
+		return this.menu;
 	}
 
 	//Returns all ingredients for all the dishes on the menu.
 	this.getAllIngredients = function() {
 		var ingredients = [];
-
 		//Could be wrong way to do it, we'll see.
-		for(key in menu) {
-			ingredients.push(menu[key].ingredients);
+		for(key in this.menu) {
+			ingredients.push(this.menu[key].ingredients);
 		}
+		return ingredients;
 	}
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
@@ -46,19 +49,19 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		var dish = getDish(id);
+		var dish = this.getDish(id);
 
-		for(key in menu) {
-			if(menu[key].id != dish.id) {
-				if(menu[key].type == dish.type) {
-					removeDishFromMenu(menu[key].id);
+		for(key in this.menu) {
+			if(this.menu[key].id != dish.id) {
+				if(this.menu[key].type == dish.type) {
+					this.removeDishFromMenu(this.menu[key].id);
 				}
 			}
 			else {
 				return;
 			}
 		}
-		menu.push(dish);
+		this.menu.push(dish);
 	}
 
 	//Removes dish from menu
@@ -350,3 +353,4 @@ var DinnerModel = function() {
 	];
 
 }
+
