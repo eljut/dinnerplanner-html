@@ -43,7 +43,14 @@ var DinnerModel = function() {
 
 	//Returns the total price of the menu (all the ingredients multiplied by number of guests).
 	this.getTotalMenuPrice = function() {
-		//TODO Lab 2
+		var ingredients = this.getAllIngredients();
+		var numberOfGuests = this.getNumberOfGuests();
+		var totalPrice = 0;
+		for(key in this.ingredients){
+			totalPrice += this.ingredients[key].price * this.numberOfGuests;
+		}
+		return totalPrice;
+
 	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
