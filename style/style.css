@@ -1,3 +1,12 @@
+.first-screen {
+	background: url(../first.jpg) no-repeat center center fixed; 
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+	color: #000;
+}
+
 .container {
 	width: 100%;
 	padding: 0;
@@ -13,7 +22,7 @@
 }
 
 .navbar-transparent {
-	background: rgba(250,230,40,0.3);
+	background: rgba(250,210,40,0.3);
 }
 
 .navbar-brand {
@@ -26,4 +35,43 @@
 	margin-bottom: 0;
 	font-size: 20px;
 	font-style: italic;
+}
+
+#start-message {
+	font-size: 16px;
+	margin-top: 120px;
+	padding: 30px;
+	padding-top: 5px;
+	width: 50%;
+	background: rgba(255,255,255,0.85);
+}
+
+@media screen and (max-width: 640px) {
+	#start-message {
+		width: 100%;
+	}
+}
+
+#start-quickly {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+.btn-default {
+	background-color: #f2973d;
+	border-color: #999;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active, .open .dropdown-toggle.btn-default {
+	color: #c60;
+	background-color: #ebebeb;
+	border-color: #c60;
+}
+
+hr {
+	border-top: 1.5px solid #000;
+	margin-bottom: 10px;
+	margin-top: 10px;
 }
