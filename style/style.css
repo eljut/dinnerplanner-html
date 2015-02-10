@@ -1,3 +1,5 @@
+/* General layout */ 
+
 html, body {
 	height: 94%;
 }
@@ -16,9 +18,18 @@ hr {
 	margin-top: 10px;
 }
 
-#exampleView, #screenAfterView {
+#exampleView {
 	height: 100%;
 }
+
+.container {
+	height: 100%;
+	width: 100%;
+	padding: 0;
+}
+
+
+/* First screen layout */
 
 .first-screen {
 	background: url(../first.jpg) no-repeat center center fixed; 
@@ -29,11 +40,30 @@ hr {
 	color: #000;
 }
 
-.container {
-	height: 100%;
-	width: 100%;
-	padding: 0;
+#start-message {
+	font-size: 16px;
+	margin-top: 140px;
+	padding: 30px;
+	padding-top: 5px;
+	width: 50%;
+	background: rgba(255,255,255,0.85);
 }
+
+@media screen and (max-width: 640px) {
+	#start-message {
+		width: 100%;
+	}
+}
+
+#start-quickly {
+	display: block;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	font-size: 20px;
+}
+
+
+/* Navbar layout */
 
 .navbar {
 	width: 100%;
@@ -61,27 +91,8 @@ hr {
 	font-style: italic;
 }
 
-#start-message {
-	font-size: 16px;
-	margin-top: 140px;
-	padding: 30px;
-	padding-top: 5px;
-	width: 50%;
-	background: rgba(255,255,255,0.85);
-}
 
-@media screen and (max-width: 640px) {
-	#start-message {
-		width: 100%;
-	}
-}
-
-#start-quickly {
-	display: block;
-	margin-top: 30px;
-	margin-bottom: 10px;
-	font-size: 20px;
-}
+/* Button layout*/ 
 
 .btn-default {
 	background-color: #f2973d;
@@ -94,6 +105,18 @@ hr {
 	border-color: #c60;
 }
 
+.confirm-div {
+	text-align: center;
+	clear: both;
+}
+
+#confirm-dinner-btn {
+	margin-top: 20px;
+}
+
+
+/* "My dinner" column */
+
 #my-dinner {
 	padding-left: 30px;
 	border-right: 2px solid;
@@ -103,43 +126,8 @@ hr {
 	width: 60px;
 }
 
-.menu-item {
-	margin-left: -5px;
-	margin-right: -5px;
-	margin-top: 10px;
-	margin-bottom: 10px;
-	border: 2px solid;
-	background: #eee;
-}
 
-.remove {
-	background: #F06061;
-	color: #FFFFFF;
-	line-height: 21px;
-	position: absolute;
-	margin-top: 5px;
-	right: 0px;
-	text-align: center;
-	width: 21px;
-	text-decoration: none;
-	-webkit-border-radius: 12px;
-	-moz-border-radius: 12px;
-	border-radius: 12px;
-	-moz-box-shadow: 0px 1px 3px #000;
-	-webkit-box-shadow: 0px 1px 3px #000;
-	box-shadow: 0px 1px 3px #000;
-}
-
-.remove:hover {
-	text-decoration: none;
-	background: #F06061;
-	color: #000;
-}
-
-.confirm-div {
-	text-align: center;
-	clear: both;
-}
+/* "Select Dish"-page layout */ 
 
 .select-dish-col {
 	padding-left: 0;
@@ -197,6 +185,10 @@ hr {
 	margin-bottom: 10px;
 }
 
-#confirm-dinner-btn {
-	margin-top: 20px;
+
+/* "Selected dish"-page layout */ 
+
+#ingredients-table {
+	background: rgba(235,235,235,1);
+	margin-top: 0;
 }
