@@ -1,16 +1,36 @@
-//ExampleView Object constructor
-var ExampleView = function (container,model) {
+//ScreenAfterView Object constructor
+var ScreenAfterView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
-	this.plusButton = container.find("#plusGuest");
-	this.minusButton = container.find("#minusGuest");
 	this.dishes = container.find("#dishes");
 	this.dishType = container.find("#dish-type");
+	this.totalCost = container.find("#total-cost");
+	this.menuHead = container.find("#menu-head");
 	
 	this.numberOfGuests.val(model.getNumberOfGuests());
-	//this.dishes.html(this.dishType.val());
+
+	// Add dish and get total cost
+	model.addDishToMenu(100);
+	model.addDishToMenu(2);
+
+	this.totalCost.html(model.getTotalMenuPrice());
+
+	// Add dishes to menu
+	var menu = model.getFullMenu();
+	for ( var i = 0; i < menu.length; i++ ) {
+		this.menuHead.after(
+			'<div class="row menu-item"><a href="#remove" title="Remove" class="remove">X</a>'+
+			'<div class="col-sm-3 dinner-col">'+
+					menu[i].id+
+				'</div><div class="col-sm-6 dinner-col">'+
+					menu[i].name+
+				'</div><div class="col-sm-3 dinner-col">'+
+					model.getDishPrice(menu[i].id)+
+				'</div></div>'
+			);
+	}
 
 	//Select dish
 	var allDishes = model.getAllDishes(this.dishType.val());
@@ -39,5 +59,7 @@ var ExampleView = function (container,model) {
 				);
 		}
 	});
+
+
 }
  
