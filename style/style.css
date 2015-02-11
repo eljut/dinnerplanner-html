@@ -1,6 +1,6 @@
 /* General layout */ 
 html, body {
-	height: 94%;
+	height: 100%;
 }
 
 .full-height {
@@ -25,6 +25,15 @@ hr {
 	height: 88%;
 	width: 100%;
 	padding: 0;
+}
+
+#view-container {
+	margin-right: 0;
+}
+
+.no-side-padding {
+	padding-left: 0;
+	padding-right: 0;
 }
 
 
@@ -156,10 +165,6 @@ hr {
 }
 
 /* "Select Dish"-page layout */ 
-.select-dish-col {
-	padding-left: 0;
-}
-
 #select-dish-head {
 	padding-top: 15px;
 	padding-bottom: 20px;
