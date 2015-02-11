@@ -38,11 +38,27 @@ var selectedDishView = function (container,model) {
 	var selectedDish = model.getDish(this.dishID.val());
 		this.dishes.append(
 			'<div class="dish">'+
-			'<div class="dish-head">'+
 			'<span class="dish-name">'+selectedDish.name+'</span></div>'+
 			'<img src="images/'+selectedDish.image+'" alt="'+selectedDish.name+'">'+
 			'<div class="dish-descr"><p>'+selectedDish.description+'</p></div>'+
 			'</div>'
 		);
+
+
+	//List of Ingredients
+	var ingredients = selectedDish.ingredients; 
+	for ( var i = 0; i < ingredients.length; i++ ) {
+		this.menuHead.after(
+			'<div class="col-sm-3 dinner-col">'+
+					ingredients[i].quantity * this.numberOfGuests+
+				'</div><div class="col-sm-6 dinner-col">'+
+					ingredients[i].name+
+				'</div><div class="col-sm-3 dinner-col">'+
+					ingredients[i].unit+
+				'</div><div class="col-sm-3 dinner-col">'+
+					ingredients[i].price * this.numberOfGuests+
+				'</div></div>'
+			);
+	}
 
 }
