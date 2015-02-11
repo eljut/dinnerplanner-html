@@ -1,14 +1,14 @@
 //ScreenAfterView Object constructor
-var selectedDishView = function (container,model) {
+var SelectedDishView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
 	this.dishes = container.find("#dishes");
 	this.dishType = container.find("#dish-type");
-	this.dishID = container.find("#dish-id");
 	this.totalCost = container.find("#total-cost");
 	this.menuHead = container.find("#menu-head");
+	this.ingredientsTable = container.find("#listOfIngredients");
 	
 	this.numberOfGuests.val(model.getNumberOfGuests());
 
@@ -35,28 +35,27 @@ var selectedDishView = function (container,model) {
 
 	this.dishID = 2;
 	//Selected dish
-	var selectedDish = model.getDish(this.dishID.val());
+	var selectedDish = model.getDish(2);
 		this.dishes.append(
-			'<div class="dish">'+
-			'<span class="dish-name">'+selectedDish.name+'</span></div>'+
+			'<h3>'+selectedDish.name+'</h3>'+
 			'<img src="images/'+selectedDish.image+'" alt="'+selectedDish.name+'">'+
-			'<div class="dish-descr"><p>'+selectedDish.description+'</p></div>'+
-			'</div>'
+			'<h3>Preparation</h3>'+
+			'<div class="dish-descr"><p>'+selectedDish.description+'</p></div>'
 		);
 
 
 	//List of Ingredients
 	var ingredients = selectedDish.ingredients; 
 	for ( var i = 0; i < ingredients.length; i++ ) {
-		this.menuHead.after(
-			'<div class="col-sm-3 dinner-col">'+
-					ingredients[i].quantity * this.numberOfGuests+
-				'</div><div class="col-sm-6 dinner-col">'+
+		this.ingredientsTable.append(
+				'<div class="col-sm-3 dinner-col">'+
+					(ingredients[i].quantity)*model.getNumberOfGuests()+
+				'</div><div class="col-sm-3 dinner-col">'+
 					ingredients[i].name+
 				'</div><div class="col-sm-3 dinner-col">'+
 					ingredients[i].unit+
 				'</div><div class="col-sm-3 dinner-col">'+
-					ingredients[i].price * this.numberOfGuests+
+					(ingredients[i].price) * model.getNumberOfGuests()+
 				'</div></div>'
 			);
 	}

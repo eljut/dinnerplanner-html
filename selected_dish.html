@@ -30,7 +30,7 @@
 						<label for="numberOfGuests">People</label>
 						<input type="number" step="1" name="People" id="numberOfGuests">
 					</div>
-					<div class="row th">
+					<div id="menu-head" class="row th">
 						<div class="col-sm-3 dinner-col">
 							Dish
 						</div>
@@ -59,32 +59,18 @@
 						<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>
 					</div>
 				</div>
-				<div class="col-sm-4 select-dish-col">
-					<div id="selected-dish-head">
-
+				<div class="col-sm-4 full-height" id="selected-dish-head">
+					<div id="dishes"></div>
+					<div class="confirm-div">
 						<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Back to Select Dish</button>
-
-					</div>
-					<div id="dishes">
 					</div>
 				</div>
-				<div class="col-sm-4 select-dish-col">
+				<div class="col-sm-5 full-height">
 					<div id="ingredients-table">
 						<h5><b>INGREDIENTS FOR <span id="numberOfGuests"></span> PEOPLE</b><h5>
 						<hr>
 						<div class="row">
-							<div class="col-sm-3 dinner-col">
-								20
-							</div>
-							<div class="col-sm-3 dinner-col">
-								meatballs
-							</div>
-							<div class="col-sm-3 dinner-col">
-								SEK
-							</div>
-							<div class="col-sm-3 dinner-col">
-								50
-							</div>
+							<div id="listOfIngredients"></div>
 						</div>
 						<hr>
 						<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm Dish</button>
@@ -102,6 +88,7 @@
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/screenAfterView.js"></script>
 	<script src="js/view/exampleView.js"></script>
 	<script src="js/view/selectedDishView.js"></script>
 	<script src="js/view/exampleViewController.js"></script>
