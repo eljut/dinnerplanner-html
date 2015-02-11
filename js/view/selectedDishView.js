@@ -17,6 +17,7 @@ var SelectedDishView = function (container,model) {
 	model.addDishToMenu(2);
 
 	this.totalCost.html(model.getTotalMenuPrice());
+	this.numberOfGuests.html(model.getNumberOfGuests());
 
 	// Add dishes to menu
 	var menu = model.getFullMenu();
@@ -48,16 +49,16 @@ var SelectedDishView = function (container,model) {
 	var ingredients = selectedDish.ingredients; 
 	for ( var i = 0; i < ingredients.length; i++ ) {
 		this.ingredientsTable.append(
-				'<div class="col-sm-3 dinner-col">'+
-					(ingredients[i].quantity)*model.getNumberOfGuests()+
-				'</div><div class="col-sm-3 dinner-col">'+
+				'<div class="row">'+
+				'<div class="col-sm-2 dinner-col">'+
+					(ingredients[i].quantity)*model.getNumberOfGuests()+' '+ingredients[i].unit+
+				'</div><div class="col-sm-4 dinner-col">'+
 					ingredients[i].name+
-				'</div><div class="col-sm-3 dinner-col">'+
-					ingredients[i].unit+
-				'</div><div class="col-sm-3 dinner-col">'+
+				'</div><div class="col-sm-2 dinner-col">'+
+					'SEK'+
+				'</div><div class="col-sm-4 dinner-col">'+
 					(ingredients[i].price) * model.getNumberOfGuests()+
-				'</div></div>'
+				'</div></div></div>'
 			);
 	}
-
 }
