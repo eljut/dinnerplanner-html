@@ -20,7 +20,7 @@ var ExampleView = function (container,model) {
 			'<div class="dish-head">'+
 			'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
 			'<span class="dish-name">'+allDishes[i].name+'</span></div>'+
-			'<div class="dish-descr"><p>'+allDishes[i].description+'</p></div>'+
+			'<div class="dish-descr">'+allDishes[i].description+'</div>'+
 			'</div>'
 			);
 	}
@@ -34,7 +34,7 @@ var ExampleView = function (container,model) {
 				'<div class="dish-head">'+
 				'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
 				'<span class="dish-name">'+allDishes[i].name+'</span></div>'+
-				'<div class="dish-descr"><p>'+allDishes[i].description+'</p></div>'+
+				'<div class="dish-descr">'+allDishes[i].description+'</div>'+
 				'</div>'
 				);
 		}
