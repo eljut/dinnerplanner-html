@@ -4,7 +4,8 @@ var SelectedDishView = function (container,model) {
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
 	this.numberOfGuests = container.find("#numberOfGuests");
-	this.dishes = container.find("#dishes");
+	this.numberOfGuests2 = container.find("#numberOfGuests2");
+	this.dish = container.find("#selected-dish");
 	this.dishType = container.find("#dish-type");
 	this.totalCost = container.find("#total-cost");
 	this.menuHead = container.find("#menu-head");
@@ -17,7 +18,7 @@ var SelectedDishView = function (container,model) {
 	model.addDishToMenu(2);
 
 	this.totalCost.html(model.getTotalMenuPrice());
-	this.numberOfGuests.html(model.getNumberOfGuests());
+	this.numberOfGuests2.html(model.getNumberOfGuests());
 
 	// Add dishes to menu
 	var menu = model.getFullMenu();
@@ -37,7 +38,7 @@ var SelectedDishView = function (container,model) {
 	this.dishID = 2;
 	//Selected dish
 	var selectedDish = model.getDish(2);
-		this.dishes.append(
+		this.dish.append(
 			'<h3>'+selectedDish.name+'</h3>'+
 			'<img src="images/'+selectedDish.image+'" alt="'+selectedDish.name+'">'+
 			'<h3>Preparation</h3>'+
@@ -52,11 +53,11 @@ var SelectedDishView = function (container,model) {
 				'<div class="row">'+
 				'<div class="col-sm-2 dinner-col">'+
 					(ingredients[i].quantity)*model.getNumberOfGuests()+' '+ingredients[i].unit+
-				'</div><div class="col-sm-4 dinner-col">'+
+				'</div><div class="col-sm-5 dinner-col">'+
 					ingredients[i].name+
 				'</div><div class="col-sm-2 dinner-col">'+
 					'SEK'+
-				'</div><div class="col-sm-4 dinner-col">'+
+				'</div><div class="col-sm-3 dinner-col">'+
 					(ingredients[i].price) * model.getNumberOfGuests()+
 				'</div></div></div>'
 			);

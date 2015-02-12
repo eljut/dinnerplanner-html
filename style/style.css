@@ -229,9 +229,15 @@ hr {
 #ingredients-table {
 	padding-top: 15px;
 	padding-bottom: 20px;
-	padding-left: 30px;
+	padding-left: 20px;
 	padding-right: 20px;
 	background: #ffe599;
+	border: 2px solid;
+}
+
+#listOfIngredients {
+	padding-left: 40px;
+
 }
 
 #selected-dish-head {
@@ -239,6 +245,10 @@ hr {
 	padding-bottom: 20px;
 	padding-left: 10px;
 	padding-right: 20px;
+}
+
+#selected-dish {
+	padding-left: 10px;
 }
 
 /* "Dinner Overview"-page layout*/
