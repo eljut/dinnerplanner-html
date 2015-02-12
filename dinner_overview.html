@@ -12,7 +12,7 @@
 
   </head>
   <body>
-  	<div id="exampleView">
+  	<div id="dinnerOverviewView">
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -23,17 +23,17 @@
 		  </div><!-- /.container-fluid -->
 		</nav>
 		<div class="container">
-			<div class="myDinnerBar">
+			<div class="row" id="myDinnerBar">
 				<div class="col-sm-9 dinner-col">
-					<h3>My Dinner: <span id="numberOfGuests"></span> people</h3>
+					<h3 class="my-dinner-head">My Dinner: <span id="numberOfGuests"></span> people</h3>
 				</div>
 				<div class="col-sm-3 dinner-col">
-					<div class="confirm-div">
-						<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Go back and edit dinner</button>
-					</div>
+				
+						<button id="edit-dinner-btn" class="btn btn-default btn-lg" type="button">Go back and edit dinner</button>
+		
 				</div>
-			</div>	
-		</div>
+			</div>
+		</div>			
 		<div id="dishes"></div>
 		<hr>
 		<button id="print-btn" class="btn btn-default btn-lg" type="button">Print Full Recipe</button>
@@ -48,7 +48,10 @@
 	<!-- The application JavaScript code -->
 	<script src="js/app.js"></script>
 	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/screenAfterView.js"></script>
+	<script src="js/view/dinnerOverviewView.js"></script>
+	<script src="js/view/selectedDishView.js"></script>
 	<script src="js/view/exampleView.js"></script>
-	<script src="js/view/exampleViewController.js"></script>
+	
   </body>
 </html>
