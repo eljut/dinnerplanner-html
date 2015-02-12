@@ -125,7 +125,7 @@ hr {
 }
 
 #edit-dinner-btn {
-	margin-top: 3px;
+	margin-top: 10px;
 }
 
 #print-btn {
@@ -335,4 +335,31 @@ hr {
 #dishDiv {
 	height:186px;
 	margin-top: 30px;
+}
+
+
+/* Arrow style button */
+
+.arrow_box {
+	position: relative;
+	background: #f2973d;
+	height:30px;
+	font-size: 12pt;
+}
+.arrow_box:after, .arrow_box:before {
+	right: 100%;
+	top: 50%;
+	border: solid;
+	content: " ";
+	height: 0;
+	width: 0;
+	position: absolute;
+	pointer-events: none;
+}
+
+.arrow_box:after {
+	border-color: rgba(204, 102, 0, 0);
+	border-right-color: #f2973d;
+	border-width: 14.5px;
+	margin-top: -13px;
 }
