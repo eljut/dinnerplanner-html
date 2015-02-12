@@ -282,12 +282,18 @@ hr {
 }
 
 .totalPrice {
-	max-height: 640px;
 	vertical-align: text-bottom; 
-	color: red;
 	font-weight: bold;
 	float: left;
+	margin-left: 15px;
+	height: 260px;
+	width: 180px;
 	border-left:1.5px solid;
+}
+
+.priceText {
+	margin-top: 200px;
+	margin-left: 15px;
 }
 
 

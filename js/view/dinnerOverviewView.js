@@ -31,8 +31,8 @@ var DinnerOverviewView = function (container,model) {
 			);
 	}
 	this.dishes.append(
-		'<div class="totalPrice">Total:<br>'+
-		'<span>'+model.getTotalMenuPrice()+' SEK</span>'+
+		'<div class="totalPrice">'+
+		'<span class="priceText">Total:<br>'+model.getTotalMenuPrice()+' SEK</span>'+
 		'</div>'
 		)
 }
