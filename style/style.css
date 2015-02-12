@@ -261,11 +261,12 @@ hr {
 	padding-left: 10px;
 }
 
-/* "Dinner Overview"-page layout*/
 
+/* "Dinner Overview"-page layout*/
 #myDinnerBar {
 	border: 2px solid;
-
+	width:100%;
+	margin-right: -10px;
 	border-radius: 0;
 	background: #ffe599;
 }
@@ -285,4 +286,18 @@ hr {
 	vertical-align: text-bottom; 
 	color: red;
 	font-weight: bold;
+	float: left;
+	border-left:1.5px solid;
+}
+
+
+/* DinnerPreparation - layout */
+#dishImage {
+	margin-top: 30px;
+	margin-left: 20px;
+}
+
+#dishDiv {
+	height:186px;
+	margin-top: 30px;
 }
