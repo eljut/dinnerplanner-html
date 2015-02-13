@@ -81,8 +81,8 @@ var DinnerModel = function() {
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		for(key in this.menu) {
-			if(this.menu[key].id = id){
-				var index = menu.indexOf(this.menu[key]);
+			if(this.menu[key].id == id){
+				var index = this.menu.indexOf(this.menu[key]);
 				this.menu.splice(index,1);
 			}
 		}

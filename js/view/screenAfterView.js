@@ -14,6 +14,11 @@ var ScreenAfterView = function (container,model) {
 	// Add dish and get total cost
 	model.addDishToMenu(100);
 	model.addDishToMenu(2);
+	
+	// Test to remove dish
+	model.addDishToMenu(201);
+	model.removeDishFromMenu(201);
+	// end test
 
 	this.totalCost.html(model.getTotalMenuPrice());
 
@@ -59,7 +64,6 @@ var ScreenAfterView = function (container,model) {
 				);
 		}
 	});
-
 
 }
  
