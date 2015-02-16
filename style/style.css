@@ -22,7 +22,7 @@ hr {
 	border-left: 1.5px solid #000; 
 }
 
-#exampleView, #screenAfterView {
+#example-view, #screen-after-view {
 	height: 100%;
 }
 
@@ -143,7 +143,7 @@ hr {
 	border-right: 2px solid;
 }
 
-#numberOfGuests {
+#number-of-guests {
 	width: 60px;
 }
 
@@ -251,7 +251,7 @@ hr {
 	border: 2px solid;
 }
 
-#listOfIngredients {
+#list-of-ingredients {
 	padding-left: 40px;
 
 }
@@ -269,7 +269,7 @@ hr {
 
 
 /* "Dinner Overview"-page layout*/
-#myDinnerBar {
+#my-dinner-bar {
 	border: 2px solid;
 	width:100%;
 	margin-right: 0;
@@ -293,18 +293,18 @@ hr {
 	height: auto;
 }
 
-#afterDinner {
+#after-dinner {
 	clear: both;
 	margin-left: 5%;
 	margin-right: 5%;
 }
 
-.dishCost {
+.dish-cost {
 	text-align: right;
 	color: red;
 }
 
-.vertLine {
+.vert-line {
 	display: inline-block;
 	height: 200px;
 	width: 2px;
@@ -313,7 +313,7 @@ hr {
 	background: #000;
 }
 
-.totalPrice {
+.total-price {
 	display: inline-block;
 	text-align: left;
 	font-weight: bold;
@@ -321,18 +321,18 @@ hr {
 	margin-right: -10%;
 }
 
-.priceText {
+.price-text {
 	color: red;
 }
 
 
 /* DinnerPreparation - layout */
-#dishImage {
+#dish-image {
 	margin-top: 30px;
 	margin-left: 20px;
 }
 
-#dishDiv {
+#dish-div {
 	height:186px;
 	margin-top: 30px;
 }
@@ -340,13 +340,13 @@ hr {
 
 /* Arrow style button */
 
-.arrow_box {
+.arrow-box {
 	position: relative;
 	background: #f2973d;
 	height:30px;
 	font-size: 12pt;
 }
-.arrow_box:after, .arrow_box:before {
+.arrow-box:after, .arrow-box:before {
 	right: 100%;
 	top: 50%;
 	border: solid;
@@ -357,7 +357,7 @@ hr {
 	pointer-events: none;
 }
 
-.arrow_box:after {
+.arrow-box:after {
 	border-color: rgba(204, 102, 0, 0);
 	border-right-color: #f2973d;
 	border-width: 14.5px;
