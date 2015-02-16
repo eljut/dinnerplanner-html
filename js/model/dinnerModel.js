@@ -5,10 +5,24 @@ var DinnerModel = function() {
 	// and selected dinner options for dinner menu
 	this.numberOfGuests = 3;
 	this.menu = [];
+	this.observers = [];
+
+
+	//Adding new observer to the array
+	this.addObserver = function(observer) {
+		this.observers.push(observer);
+	}
+
+	this.notifyObservers = function(obj) {
+		for(observer in observers) {
+			this.observers.update(obj);
+		}
+	}
 
 	this.setNumberOfGuests = function(num) {
 		if(num > 0) {
 			numberOfGuests = num;
+			this.notifyObservers(updateNumberOfGuests);
 		}
 	}
 
@@ -69,6 +83,7 @@ var DinnerModel = function() {
 			if(this.menu[key].id != dish.id) {
 				if(this.menu[key].type == dish.type) {
 					this.removeDishFromMenu(this.menu[key].id);
+					this.notifyObservers(menuDishReplaced);
 				}
 			}
 			else {
@@ -76,6 +91,7 @@ var DinnerModel = function() {
 			}
 		}
 		this.menu.push(dish);
+		this.notifyObservers(menuDishAdded);
 	}
 
 	//Removes dish from menu
@@ -84,6 +100,7 @@ var DinnerModel = function() {
 			if(this.menu[key].id == id){
 				var index = this.menu.indexOf(this.menu[key]);
 				this.menu.splice(index,1);
+				this.notifyObservers(menuDishRemoved);
 			}
 		}
 	}
