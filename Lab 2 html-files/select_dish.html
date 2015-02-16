@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dinner planner</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="style/style.css">
+
+  </head>
+  <body>
+  	<div id="exampleView">
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <a class="navbar-brand" href="#">HOMELETTE</a>
+		    </div>
+		    <p class="navbar-text">From the best chefs in the world directly into your kitchen</p>
+		  </div><!-- /.container-fluid -->
+		</nav>
+		<div class="container">
+			<div id="view-container" class="row full-height">
+				<div class="col-sm-3 full-height" id="my-dinner">
+					<h3>My Dinner</h3>
+					<div>
+						<label for="numberOfGuests">People</label>
+						<input type="number" step="1" name="People" id="numberOfGuests">
+					</div>
+					<div id="menu-head" class="row th">
+						<div class="col-sm-3 dinner-col">
+							Dish
+						</div>
+						<div class="col-sm-6 dinner-col">
+							Name
+						</div>
+						<div class="col-sm-3 dinner-col">
+							Cost
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-sm-3 dinner-col">
+							Pending
+						</div>
+						<div class="col-sm-6 dinner-col">
+						</div>
+						<div class="col-sm-3 dinner-col">
+							0.00
+						</div>
+					</div>
+					<hr>
+					<div class="right-aligned">
+						SEK <span id="total-cost">0.00</span>
+					</div>
+					<div class="confirm-div">
+						<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>
+					</div>
+				</div>
+				<div id="select-dish" class="col-sm-9 no-side-padding">
+					<div id="select-dish-head">
+						<h3>SELECT DISH</h3>
+						<hr>
+						<input id="search-bar" type="search" placeholder="Enter key words">
+						<button id="search-button">Search</button>
+						<select id="dish-type">
+							<option value="starter">Starter</option>
+							<option value="main dish">Main</option>
+							<option value="dessert">Dessert</option>
+						</select>
+					</div>
+					<div id="dishes">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+
+	<!-- The application JavaScript code -->
+	<script src="js/app.js"></script>
+	<script src="js/model/dinnerModel.js"></script>
+	<script src="js/view/exampleView.js"></script>
+	<script src="js/view/exampleViewController.js"></script>
+  </body>
+</html>
