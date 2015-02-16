@@ -7,15 +7,14 @@ var MyDinnerTabView = function (container,model) {
 	this.dishes = container.find("#dishes");
 	this.dishType = container.find("#dish-type");
 	this.totalCost = container.find("#total-cost");
-	this.myDinnerTab = container.find("#my-dinner-tab");
+	this.myDinner = container.find("#my-dinner");
 	
 	this.numberOfGuests.val(model.getNumberOfGuests());
-
 	this.totalCost.html(model.getTotalMenuPrice());
 
-	this.myDinnerTab.append(
-		'<div class="row full-height" id="my-dinner">'+
-			'<div class="col-sm-3 full-height">'+
+	this.myDinner.addClass("col-sm-3 full-height");
+
+	this.myDinner.append(
 				'<h3>My Dinner</h3>'+
 				'<div>'+
 					'<label for="'+model.getNumberOfGuests()+'">People</label>'+
@@ -37,7 +36,7 @@ var MyDinnerTabView = function (container,model) {
 	// Add dishes to menu
 	var menu = model.getFullMenu();
 	for ( var i = 0; i < menu.length; i++ ) {
-		this.myDinnerTab.append(
+		this.myDinner.append(
 				'<div class="row menu-item"><a href="#remove" title="Remove" class="remove">X</a>'+
 					'<div class="col-sm-3 dinner-col">'+
 						menu[i].id+
@@ -52,32 +51,25 @@ var MyDinnerTabView = function (container,model) {
 		);
 	}
 
-	this.myDinnerTab.append(
+	this.myDinner.append(
 				'<div class="row">'+
 					'<div class="col-sm-3 dinner-col">'+
-						'<div class="col-sm-3 dinner-col">'+
-						'</div>'+
-						'<div class="col-sm-6 dinner-col">'+
-							'Pending'+
-						'</div>'+
-						'<div class="col-sm-3 dinner-col">'+
-							'0.00'+
-						'</div>'+
 					'</div>'+
-				'</div>'+
-				'<div class="row">'+
+					'<div class="col-sm-6 dinner-col">'+
+						'Pending'+
+					'</div>'+
 					'<div class="col-sm-3 dinner-col">'+
-						'<hr>'+
-						'<div class="right-aligned">'+
-							'SEK <span id="total-cost">'+model.getTotalMenuPrice()+'</span>'+
-						'</div>'+
-						'<div class="confirm-div">'+
-							'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
-						'</div>'+
+						'0.00'+
 					'</div>'+
 				'</div>'+
-			'</div>'+
-		'</div>'
+				'<hr>'+
+				'<div class="right-aligned">'+
+					'SEK <span id="total-cost">0.00</span>'+
+				'</div>'+
+				'<div class="confirm-div">'+
+					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
+				'</div>'+
+				'</div>'
 	);
 						
 					

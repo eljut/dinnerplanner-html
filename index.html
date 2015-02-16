@@ -5,29 +5,31 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dinner planner</title>
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="style/style.css">
-
   </head>
   <body class="first-screen">
-	<div class="container" id="views">
-		<div id="navbar"></div>
-    <div id="my-dinner-tab"></div>
-	</div>
+  	<div class="container" id="views">
+  		<div id="navbar"></div>
+      <div id="view-container" class="row full-height">
+        <div id="my-dinner"></div>
+        <div id="select-dish"></div>
+      </div>
+  	</div>
 
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery.js"></script>
     <!-- Bootstrap JavaScript, needed if you want for instance tabs, models, popovers etc. -->
     <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
-
-	<!-- The application JavaScript code -->
-	<script src="js/app.js"></script>
-	<script src="js/model/dinnerModel.js"></script>
-	<script src="js/view/navbarView.js"></script>
-  <script src="js/view/myDinnerTabView.js"></script>
-	<script src="js/view/backgroundView.js"></script>
-	<script src="js/view/startMessageView.js"></script>
+  	<!-- The application JavaScript code -->
+  	<script src="js/app.js"></script>
+  	<script src="js/model/dinnerModel.js"></script>
+  	<script src="js/view/navbarView.js"></script>
+  	<script src="js/view/backgroundView.js"></script>
+  	<script src="js/view/startMessageView.js"></script>
+    <script src="js/view/myDinnerTabView.js"></script>
+    <script src="js/view/selectDishView.js"></script>
+    <script src="js/view/selectedDishView.js"></script>
   </body>
 </html>

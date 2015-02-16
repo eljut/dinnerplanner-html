@@ -7,10 +7,6 @@ $(function() {
 	var backgroundView = new BackgroundView($(document.body), model);
 	var startMessageView = new StartMessageView($("#views"), model);
 	var myDinnerTabView = new MyDinnerTabView($("#views"), model);
-	/*var exampleView = new ExampleView($("#exampleView"), model);
-	var screenAfterView = new ScreenAfterView($("#screenAfterView"), model);
-	var selectedDishView = new SelectedDishView($("#selectedDishView"), model);
-	var dinnerOverviewView = new DinnerOverviewView($("#dinnerOverviewView"), model);
-	var dinnerPreparationView = new DinnerPreparationView($("#dinnerPreparationView"), model);*/
-
+	var selectDishView = new SelectDishView($("#views"), model);
+	var selectedDishView = new SelectedDishView($("#views"), model);
 });
