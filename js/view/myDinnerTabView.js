@@ -8,6 +8,9 @@ var MyDinnerTabView = function (container,model) {
 	this.dishType = container.find("#dish-type");
 	this.totalCost = container.find("#total-cost");
 	this.myDinner = container.find("#my-dinner");
+
+	//Add this view as an observer of model
+	model.addObserver(this);
 	
 	this.numberOfGuests.val(model.getNumberOfGuests());
 	this.totalCost.html(model.getTotalMenuPrice());

@@ -5,6 +5,9 @@ var DinnerOverviewView = function (container,model) {
   	// and/or ones that respond to interaction)
 	this.dinnerOverview = container.find("#dinner-overview");
 
+	//Add this view as an observer of model
+	model.addObserver(this);
+
 	this.showView = function() {
 		this.dinnerOverview.html(
 			'<div class="container">'+
