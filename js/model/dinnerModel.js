@@ -14,15 +14,15 @@ var DinnerModel = function() {
 	}
 
 	this.notifyObservers = function(obj) {
-		for(observer in observers) {
+		for(observer in this.observers) {
 			this.observers.update(obj);
 		}
 	}
 
 	this.setNumberOfGuests = function(num) {
 		if(num > 0) {
-			numberOfGuests = num;
-			this.notifyObservers(updateNumberOfGuests);
+			this.numberOfGuests = num;
+			this.notifyObservers("updateNumberOfGuests");
 		}
 	}
 
@@ -33,7 +33,7 @@ var DinnerModel = function() {
 
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
-		for(key in menu) {
+		for(key in this.menu) {
 			if(this.menu[key].type == type) {
 				return this.menu[key];
 			}
@@ -83,7 +83,7 @@ var DinnerModel = function() {
 			if(this.menu[key].id != dish.id) {
 				if(this.menu[key].type == dish.type) {
 					this.removeDishFromMenu(this.menu[key].id);
-					this.notifyObservers(menuDishReplaced);
+					//this.notifyObservers("menuDishReplaced");
 				}
 			}
 			else {
@@ -91,7 +91,7 @@ var DinnerModel = function() {
 			}
 		}
 		this.menu.push(dish);
-		this.notifyObservers(menuDishAdded);
+		this.notifyObservers("menuDishAdded");
 	}
 
 	//Removes dish from menu
@@ -100,7 +100,7 @@ var DinnerModel = function() {
 			if(this.menu[key].id == id){
 				var index = this.menu.indexOf(this.menu[key]);
 				this.menu.splice(index,1);
-				this.notifyObservers(menuDishRemoved);
+				this.notifyObservers("menuDishRemoved");
 			}
 		}
 	}

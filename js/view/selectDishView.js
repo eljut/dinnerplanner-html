@@ -5,6 +5,9 @@ var SelectDishView = function (container,model) {
   	// and/or ones that respond to interaction)
 	this.selectDish = container.find("#select-dish");
 
+	//Add this view as an observer of model
+	model.addObserver(this);
+
 	this.showView = function() {
 		this.selectDish.addClass("col-sm-9 no-side-padding");
 		this.selectDish.html(
