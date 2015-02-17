@@ -1,4 +1,4 @@
-//ScreenAfterView Object constructor
+//NavbarView Object constructor
 var NavbarView = function (container,model) {
 
 	container.html('<nav class="navbar navbar-default navbar-transparent">'+

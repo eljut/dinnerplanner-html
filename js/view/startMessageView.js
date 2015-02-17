@@ -1,4 +1,4 @@
-//ScreenAfterView Object constructor
+//StartMessageView Object constructor
 var StartMessageView = function (container,model) {
 
 	container.append('<div id="start-message">'+

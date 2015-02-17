@@ -9,4 +9,5 @@ $(function() {
 	var myDinnerTabView = new MyDinnerTabView($("#views"), model);
 	var selectDishView = new SelectDishView($("#views"), model);
 	var selectedDishView = new SelectedDishView($("#views"), model);
+	var dinnerOverviewView = new DinnerOverviewView($("#views"), model);
 });
