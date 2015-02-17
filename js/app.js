@@ -10,4 +10,5 @@ $(function() {
 	var selectDishView = new SelectDishView($("#views"), model);
 	var selectedDishView = new SelectedDishView($("#views"), model);
 	var dinnerOverviewView = new DinnerOverviewView($("#views"), model);
+	var dinnerPreparationView = new DinnerPreparationView($("#views"), model);
 });
