@@ -12,4 +12,12 @@ var NavbarView = function (container,model) {
 
 	this.homeButton = container.find(".navbar-brand");
 	this.nav = container.find("nav");
+	
+	this.makeTransparent = function() {
+		this.nav.addClass("navbar-transparent");
+	}
+
+	this.makeOpaque = function() {
+		this.nav.removeClass("navbar-transparent");
+	}
 }

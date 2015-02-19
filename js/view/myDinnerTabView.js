@@ -3,17 +3,10 @@ var MyDinnerTabView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.numberOfGuests = container.find("#numberOfGuests");
-	this.dishes = container.find("#dishes");
-	this.dishType = container.find("#dish-type");
-	this.totalCost = container.find("#total-cost");
-	this.myDinner = container.find("#my-dinner");
+	this.myDinner = container;
 
 	//Add this view as an observer of model
 	model.addObserver(this);
-	
-	this.numberOfGuests.val(model.getNumberOfGuests());
-	this.totalCost.html(model.getTotalMenuPrice());
 
 	this.showView = function() {
 		this.myDinner.addClass("col-sm-3 full-height");
@@ -71,11 +64,21 @@ var MyDinnerTabView = function (container,model) {
 						'SEK <span id="total-cost">0.00</span>'+
 					'</div>'+
 					'<div class="confirm-div">'+
-						'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
+						'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'+
 					'</div>'+
 					'</div>'
 		);
-						
-	}			
+
+		this.numberOfGuests = container.find("#number-of-guests");
+		this.totalCost = container.find("#total-cost");
+		this.confirmDinnerButton = container.find("#confirm-dinner-btn");
+
+		this.totalCost.html(model.getTotalMenuPrice());
+	}
+
+	this.hideView = function() {
+		this.myDinner.removeClass("col-sm-3 full-height");
+		this.myDinner.detach();
+	}
 }
  

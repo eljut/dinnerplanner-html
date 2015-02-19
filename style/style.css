@@ -4,14 +4,6 @@ html, body {
 	min-height: 100%;
 }
 
-.full-height {
-	height: 100%;
-}
-
-.right-aligned {
-	float: right;
-}
-
 hr {
 	border-top: 1.5px solid #000;
 	margin-bottom: 10px;
@@ -34,11 +26,6 @@ hr {
 
 #view-container {
 	margin-right: 0;
-}
-
-.no-side-padding {
-	padding-left: 0;
-	padding-right: 0;
 }
 
 
@@ -363,4 +350,26 @@ hr {
 	border-right-color: #f2973d;
 	border-width: 14.5px;
 	margin-top: -13px;
+}
+
+/* Shape modifiers */
+.full-height {
+	height: 100%;
+}
+
+.right-aligned {
+	float: right;
+}
+
+.no-side-padding {
+	padding-left: 0;
+	padding-right: 0;
+}
+
+.no-padding {
+	padding: 0 !important;
+}
+
+.no-margin {
+	margin: 0 !important;
 }

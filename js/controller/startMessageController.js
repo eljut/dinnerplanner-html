@@ -1,7 +1,7 @@
 //StartMessageController Object constructor
-var StartMessageController = function (view,model) {
+var StartMessageController = function (view,model,stateController) {
 
 	view.newDinnerButton.click(function() {
-		alert("Let's go!");
+		stateController.update("new_dinner");
 	});
 }

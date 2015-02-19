@@ -6,5 +6,9 @@ var BackgroundView = function (container,model) {
 	
 	this.homeButton = container.find(".navbar-brand");
 	this.container = container;
+
+	this.toggleBackground = function() {
+		this.container.toggleClass("first-screen");
+	}
 	
 }

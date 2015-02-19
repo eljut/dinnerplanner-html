@@ -10,19 +10,21 @@ $(function() {
 	//And create the needed controllers and views
 	var navbarView = new NavbarView($("#navbar"), model);
 	var backgroundView = new BackgroundView($(document.body), model);
-	var startMessageView = new StartMessageView($("#views"), model);
-	var myDinnerTabView = new MyDinnerTabView($("#views"), model);
-	var selectDishView = new SelectDishView($("#views"), model);
+	var startMessageView = new StartMessageView($("#start-message"), model);
+	var myDinnerTabView = new MyDinnerTabView($("#my-dinner"), model);
+	var selectDishView = new SelectDishView($("#select-dish"), model);
 	var selectedDishView = new SelectedDishView($("#views"), model);
 	var dinnerOverviewView = new DinnerOverviewView($("#views"), model);
 	var dinnerPreparationView = new DinnerPreparationView($("#views"), model);
 
-	var navbarController = new NavbarController(navbarView, model);
-	var backgroundController = new BackgroundController(backgroundView, model);
-	var startMessageController = new StartMessageController(startMessageView, model);
-	var myDinnerTabController = new MyDinnerTabController(myDinnerTabView, model);
-	var selectDishController = new SelectDishController(selectDishView, model);
-	var selectedDishController = new SelectedDishController(selectedDishView, model);
-	var dinnerOverControllerController = new DinnerOverviewController(dinnerOverviewView, model);
-	var dinnerPreparationController = new DinnerPreparationController(dinnerPreparationView, model);
+	var stateController = new StateController(navbarView,backgroundView,startMessageView,myDinnerTabView,selectDishView,selectedDishView,dinnerOverviewView,dinnerPreparationView);
+
+	var navbarController = new NavbarController(navbarView, model, stateController);
+	var backgroundController = new BackgroundController(backgroundView, model, stateController);
+	var startMessageController = new StartMessageController(startMessageView, model, stateController);
+	var myDinnerTabController = new MyDinnerTabController(myDinnerTabView, model, stateController);
+	var selectDishController = new SelectDishController(selectDishView, model, stateController);
+	var selectedDishController = new SelectedDishController(selectedDishView, model, stateController);
+	var dinnerOverControllerController = new DinnerOverviewController(dinnerOverviewView, model, stateController);
+	var dinnerPreparationController = new DinnerPreparationController(dinnerPreparationView, model, stateController);
 });

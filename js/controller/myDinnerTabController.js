@@ -1,4 +1,4 @@
 //MyDinnerTabController Object constructor
-var MyDinnerTabController = function (view,model) {
+var MyDinnerTabController = function (view,model,stateController) {
 	
 }

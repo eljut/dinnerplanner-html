@@ -1,4 +1,4 @@
 //DinnerPreparationController Object constructor
-var DinnerPreparationController = function (view,model) {
+var DinnerPreparationController = function (view,model,stateController) {
 
 }

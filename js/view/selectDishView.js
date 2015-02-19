@@ -3,12 +3,13 @@ var SelectDishView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.selectDish = container.find("#select-dish");
+	this.selectDish = container;
 
 	//Add this view as an observer of model
 	model.addObserver(this);
 
 	this.showView = function() {
+		console.log("---Showing selectDishView!");
 		this.selectDish.addClass("col-sm-9 no-side-padding");
 		this.selectDish.html(
 			'<div id="select-dish-head">'+
@@ -39,6 +40,12 @@ var SelectDishView = function (container,model) {
 				'</div>'
 				);
 		}
+	}
+
+	this.hideView = function() {
+		console.log("---Hiding selectDishView!");
+		this.selectDish.removeClass("col-sm-9 no-side-padding");
+		container.empty();
 	}
 	
 	//Change Dishes
