@@ -32,10 +32,11 @@ var DinnerOverviewView = function (container,model) {
 		for ( var i = 0; i < fullMenu.length; i++ ) {
 			this.dinner.append(
 				'<div class="dish">'+
-				'<div class="dish-head">'+
-				'<img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'">'+
-				'<span class="dish-name">'+fullMenu[i].name+'</span></div>'+
-				'<div class="dish-cost"><b>'+model.getDishPrice(fullMenu[i].id)+' SEK</b></div>'+
+					'<div class="dish-head">'+
+						'<img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'">'+
+						'<span class="dish-name">'+fullMenu[i].name+'</span>'+
+					'</div>'+
+					'<div class="dish-cost"><b>'+model.getDishPrice(fullMenu[i].id)+' SEK</b></div>'+
 				'</div>'
 				);
 		}

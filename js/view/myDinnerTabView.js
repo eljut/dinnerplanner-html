@@ -34,7 +34,8 @@ var MyDinnerTabView = function (container,model) {
 		var menu = model.getFullMenu();
 		for ( var i = 0; i < menu.length; i++ ) {
 			this.myDinner.append(
-					'<div class="row menu-item"><a href="#remove" title="Remove" class="remove">X</a>'+
+					'<div class="row menu-item">'+
+						'<a href="#remove" title="Remove" class="remove">X</a>'+
 						'<div class="col-sm-3 dinner-col">'+
 							menu[i].id+
 						'</div>'+

@@ -3,15 +3,15 @@ var SelectDishView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.selectDish = container;
+	this.container = container;
 
 	//Add this view as an observer of model
 	model.addObserver(this);
 
 	this.showView = function() {
 		console.log("---Showing selectDishView!");
-		this.selectDish.addClass("col-sm-9 no-side-padding");
-		this.selectDish.html(
+		this.container.addClass("col-sm-9 no-side-padding");
+		this.container.html(
 			'<div id="select-dish-head">'+
 				'<h3>SELECT DISH</h3>'+
 				'<hr>'+
@@ -30,13 +30,15 @@ var SelectDishView = function (container,model) {
 		this.dishes = container.find("#dishes");
 		this.dishType = container.find("#dish-type");
 		var allDishes = model.getAllDishes(this.dishType.val());
+
 		for ( var i = 0; i < allDishes.length; i++ ) {
 			this.dishes.append(
-				'<div class="dish">'+
-				'<div class="dish-head">'+
-				'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
-				'<span class="dish-name">'+allDishes[i].name+'</span></div>'+
-				'<div class="dish-descr">'+allDishes[i].description+'</div>'+
+				'<div class="dish" data-dish-id="'+allDishes[i].id+'">'+
+					'<div class="dish-head">'+
+						'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
+						'<span class="dish-name">'+allDishes[i].name+'</span>'+
+					'</div>'+
+					'<div class="dish-descr">'+allDishes[i].description+'</div>'+
 				'</div>'
 				);
 		}
@@ -44,24 +46,9 @@ var SelectDishView = function (container,model) {
 
 	this.hideView = function() {
 		console.log("---Hiding selectDishView!");
-		this.selectDish.removeClass("col-sm-9 no-side-padding");
+		this.container.removeClass("col-sm-9 no-side-padding");
 		container.empty();
 	}
 	
-	//Change Dishes
-	/*this.dishType.change(function() {
-		var allDishes = model.getAllDishes($(this).val());
-		$("#dishes").html("");
-		for ( var i = 0; i < allDishes.length; i++ ) {
-			$("#dishes").append(
-				'<div class="dish">'+
-				'<div class="dish-head">'+
-				'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
-				'<span class="dish-name">'+allDishes[i].name+'</span></div>'+
-				'<div class="dish-descr">'+allDishes[i].description+'</div>'+
-				'</div>'
-				);
-		}
-	});*/
 }
  

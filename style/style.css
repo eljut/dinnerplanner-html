@@ -145,6 +145,7 @@ hr {
 }
 
 .remove {
+	z-index: 9000;
 	background: #F06061;
 	color: #FFFFFF;
 	line-height: 21px;
@@ -204,6 +205,10 @@ hr {
 .dish-head {
 	padding: 8px;
 	background: #ddd;
+}
+
+#select-dish .dish-head {
+	cursor: pointer;
 }
 
 .dish-name {
