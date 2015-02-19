@@ -1,4 +1,4 @@
 //SelectedDishController Object constructor
-var SelectedDishController = function (container,model) {
+var SelectedDishController = function (view,model) {
 	
 }

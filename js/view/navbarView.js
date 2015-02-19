@@ -10,12 +10,6 @@ var NavbarView = function (container,model) {
 	  '</div><!-- /.container-fluid -->'+
 	'</nav>');
 
-	var homeButton = container.find(".navbar-brand");
-
-	$("nav").toggleClass("navbar-transparent");
-
-	homeButton.click(function() {
-		$("nav").toggleClass("navbar-transparent");
-		return false;
-	});
+	this.homeButton = container.find(".navbar-brand");
+	this.nav = container.find("nav");
 }
