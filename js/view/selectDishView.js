@@ -49,6 +49,10 @@ var SelectDishView = function (container,model) {
 		this.container.removeClass("col-sm-9 no-side-padding");
 		container.empty();
 	}
+
+	this.update = function(obj) {
+
+	}
 	
 }
  

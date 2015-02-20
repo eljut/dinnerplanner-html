@@ -14,8 +14,8 @@ var DinnerModel = function() {
 	}
 
 	this.notifyObservers = function(obj) {
-		for(observer in this.observers) {
-			this.observers.update(obj);
+		for(obs in this.observers) {
+			this.observers[obs].update(obj);
 		}
 	}
 
@@ -328,7 +328,7 @@ var DinnerModel = function() {
 			'price':4
 			}]
 		},{
-		'id':102,
+		'id':103,
 		'name':'MD 4',
 		'type':'main dish',
 		'image':'meatballs.jpg',

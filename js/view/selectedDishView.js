@@ -3,17 +3,17 @@ var SelectedDishView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.selectDish = container.find("#select-dish");
+	this.container = container;
 
 	//Add this view as an observer of model
 	model.addObserver(this);
 
-	this.selectDish.removeClass("col-sm-9 no-side-padding");
+	this.container.removeClass("col-sm-9 no-side-padding");
 
 	this.showView = function(id) {
 		var selectedDish = model.getDish(id);
 
-		this.selectDish.html(
+		this.container.html(
 			'<div class="col-sm-4 full-height" id="selected-dish-head">'+
 				'<div id="selected-dish">'+
 					'<h3>'+selectedDish.name+'</h3>'+
@@ -21,19 +21,19 @@ var SelectedDishView = function (container,model) {
 					'<h3>Preparation</h3>'+
 					'<div class="dish-descr"><p>'+selectedDish.description+'</p></div>'+
 				'</div>'+
-				'<div class="confirm-div">'+
-					'<button id="confirm-dinner-btn" class="arrow-box" type="button">Back to Select Dish</button>'+
+				'<div class="">'+
+					'<button id="back-btn" class="arrow-box" type="button">Back to Select Dish</button>'+
 				'</div>'+
 			'</div>'+
 			'<div class="col-sm-5 full-height">'+
 				'<div id="ingredients-table">'+
-					'<h5><b>INGREDIENTS FOR <span id="numberOfGuests2">'+model.getNumberOfGuests()+'</span> PEOPLE</b><h5>'+
+					'<h5><b>INGREDIENTS FOR <span id="numberOfGuests2">'+model.getNumberOfGuests()+'</span> PEOPLE</b></h5>'+
 					'<hr>'+
 					'<div class="row">'+
 						'<div id="listOfIngredients"></div>'+
 					'</div>'+
 					'<hr>'+
-					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm Dish</button>'+
+					'<button data-dish-id="'+selectedDish.id+'" id="confirm-dish-btn" class="btn btn-default btn-lg" type="button">Confirm Dish</button>'+
 				'</div>'+
 			'</div>');
 
@@ -56,6 +56,15 @@ var SelectedDishView = function (container,model) {
 				'</div>'
 			);
 		}
+	}
+
+	this.hideView = function() {
+		console.log("---Hiding selectedDishView!");
+		container.empty();
+	}
+
+	this.update = function(obj) {
+
 	}
 	
 }

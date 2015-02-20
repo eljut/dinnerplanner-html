@@ -3,15 +3,16 @@ var MyDinnerTabView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.myDinner = container;
+	this.container = container;
 
-	//Add this view as an observer of model
+	// Add this view as an observer of model
 	model.addObserver(this);
 
 	this.showView = function() {
-		this.myDinner.addClass("col-sm-3 full-height");
+		console.log("---Showing myDinnerTabView!");
+		this.container.addClass("col-sm-3 full-height");
 
-		this.myDinner.append(
+		this.container.append(
 					'<h3>My Dinner</h3>'+
 					'<div>'+
 						'<label for="number-of-guests">People</label>'+
@@ -27,13 +28,14 @@ var MyDinnerTabView = function (container,model) {
 						'<div class="col-sm-3 dinner-col">'+
 							'Cost'+
 						'</div>'+
-					'</div>'
+					'</div>'+
+					'<div id="menu"></div>'
 		);
 
 		// Add dishes to menu
 		var menu = model.getFullMenu();
 		for ( var i = 0; i < menu.length; i++ ) {
-			this.myDinner.append(
+			$("#menu").append(
 					'<div class="row menu-item">'+
 						'<a href="#remove" title="Remove" class="remove">X</a>'+
 						'<div class="col-sm-3 dinner-col">'+
@@ -49,7 +51,7 @@ var MyDinnerTabView = function (container,model) {
 			);
 		}
 
-		this.myDinner.append(
+		this.container.append(
 					'<div class="row">'+
 						'<div class="col-sm-3 dinner-col">'+
 						'</div>'+
@@ -62,7 +64,7 @@ var MyDinnerTabView = function (container,model) {
 					'</div>'+
 					'<hr>'+
 					'<div class="right-aligned">'+
-						'SEK <span id="total-cost">0.00</span>'+
+						'SEK <span id="total-cost">'+model.getTotalMenuPrice()+'</span>'+
 					'</div>'+
 					'<div class="confirm-div">'+
 						'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'+
@@ -71,15 +73,41 @@ var MyDinnerTabView = function (container,model) {
 		);
 
 		this.numberOfGuests = container.find("#number-of-guests");
-		this.totalCost = container.find("#total-cost");
-		this.confirmDinnerButton = container.find("#confirm-dinner-btn");
-
-		this.totalCost.html(model.getTotalMenuPrice());
 	}
 
 	this.hideView = function() {
-		this.myDinner.removeClass("col-sm-3 full-height");
-		this.myDinner.detach();
+		console.log("---Hiding myDinnerTabView!");
+		this.container.removeClass("col-sm-3 full-height");
+		this.container.children().remove();
 	}
+
+	this.update = function(obj) {
+		if (obj === "menuDishAdded") {
+			// Remove dishes from menu
+			container.find("#menu").children().remove();
+			
+			// Add dishes to menu
+			var menu = model.getFullMenu();
+			for ( var i = 0; i < menu.length; i++ ) {
+				$("#menu").append(
+					'<div class="row menu-item">'+
+						'<a href="#remove" title="Remove" class="remove">X</a>'+
+						'<div class="col-sm-3 dinner-col">'+
+							menu[i].id+
+						'</div>'+
+						'<div class="col-sm-6 dinner-col">'+
+							menu[i].name+
+						'</div>'+
+						'<div class="col-sm-3 dinner-col">'+
+							model.getDishPrice(menu[i].id)+
+						'</div>'+
+					'</div>'
+				);
+			}
+
+			$("#total-cost").html(model.getTotalMenuPrice());
+		}
+	}
+
 }
- 
+

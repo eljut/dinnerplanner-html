@@ -3,13 +3,10 @@ var DinnerOverviewView = function (container,model) {
 	
 	// Get all the relevant elements of the view (ones that show data
   	// and/or ones that respond to interaction)
-	this.dinnerOverview = container.find("#dinner-overview");
-
-	//Add this view as an observer of model
-	model.addObserver(this);
+	this.container = container;
 
 	this.showView = function() {
-		this.dinnerOverview.html(
+		this.container.html(
 			'<div class="container">'+
 				'<div class="row" id="my-dinner-bar">'+
 					'<div class="col-sm-9 dinner-col">'+
@@ -48,5 +45,6 @@ var DinnerOverviewView = function (container,model) {
 		'</div>'
 		)
 	}
+
 }
  

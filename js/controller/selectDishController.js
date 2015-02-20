@@ -23,6 +23,9 @@ var SelectDishController = function (view,model,stateController) {
 	});
 
 	view.container.on("click", ".dish-head", function(event) {
-		alert("Dish clicked!");
+		var id = $(this).parent().data("dish-id");
+		console.log("Clicked dish with id "+id);
+		//model.addDishToMenu(id);
+		stateController.showSelectedDish(id);
 	});
 }

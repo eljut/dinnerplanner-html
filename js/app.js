@@ -2,10 +2,10 @@ $(function() {
 	//We instantiate our model
 	var model = new DinnerModel();
 	//Add dishes for testing
-	model.addDishToMenu(1);
+	/*model.addDishToMenu(1);
 	model.addDishToMenu(2);
 	model.addDishToMenu(100);
-	model.addDishToMenu(200);
+	model.addDishToMenu(200);*/
 	
 	//And create the needed controllers and views
 	var navbarView = new NavbarView($("#navbar"), model);
@@ -13,9 +13,9 @@ $(function() {
 	var startMessageView = new StartMessageView($("#start-message"), model);
 	var myDinnerTabView = new MyDinnerTabView($("#my-dinner"), model);
 	var selectDishView = new SelectDishView($("#select-dish"), model);
-	var selectedDishView = new SelectedDishView($("#views"), model);
-	var dinnerOverviewView = new DinnerOverviewView($("#views"), model);
-	var dinnerPreparationView = new DinnerPreparationView($("#views"), model);
+	var selectedDishView = new SelectedDishView($("#select-dish"), model);
+	var dinnerOverviewView = new DinnerOverviewView($("#dinner-overview"), model);
+	var dinnerPreparationView = new DinnerPreparationView($("#dinner-preparation"), model);
 
 	var stateController = new StateController(navbarView,backgroundView,startMessageView,myDinnerTabView,selectDishView,selectedDishView,dinnerOverviewView,dinnerPreparationView);
 
