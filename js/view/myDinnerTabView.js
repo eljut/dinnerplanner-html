@@ -42,7 +42,7 @@ var MyDinnerTabView = function (container,model) {
 		for ( var i = 0; i < menu.length; i++ ) {
 			menuItemContent = 
 				'<a href="#remove" title="Remove" class="remove">X</a>'+
-				'<div class="col-sm-3 dinner-col">'+
+				'<div id="dish-id" class="col-sm-3 dinner-col">'+
 					menu[i].id+
 				'</div>'+
 				'<div class="col-sm-6 dinner-col">'+
@@ -83,13 +83,26 @@ var MyDinnerTabView = function (container,model) {
 			'<div class="right-aligned">'+
 				'SEK <span id="total-cost">'+model.getTotalMenuPrice()+'</span>'+
 			'</div>'+
-			'<div class="confirm-div">'+
-				'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'+
-			'</div>'+
+			'<div id="confirm-button"></div>'+
 			'</div>'
 		);
 
 		this.numberOfGuests = container.find("#number-of-guests");
+
+		if (menu.length == 0) {
+			this.confirmButton = container.find("#confirm-button").empty();
+			this.confirmButton.html(
+				'<div class="confirm-div">'+
+					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'+
+				'</div>'
+			)} else {
+				this.confirmButton = container.find("#confirm-button").empty();
+				this.confirmButton.html(
+					'<div class="confirm-div">'+
+						'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
+					'</div>'
+			)}; 
+
 	}
 
 	this.hideView = function() {
@@ -111,7 +124,7 @@ var MyDinnerTabView = function (container,model) {
 			for ( var i = 0; i < menu.length; i++ ) {
 				menuItemContent = 
 					'<a href="#remove" title="Remove" class="remove">X</a>'+
-					'<div class="col-sm-3 dinner-col">'+
+					'<div id="dish-id" class="col-sm-3 dinner-col">'+
 						menu[i].id+
 					'</div>'+
 					'<div class="col-sm-6 dinner-col">'+
@@ -137,6 +150,12 @@ var MyDinnerTabView = function (container,model) {
 			}
 
 			$("#total-cost").html(model.getTotalMenuPrice());
+
+			this.confirmButton.html(
+				'<div class="confirm-div">'+
+					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
+				'</div>'
+			);
 		}
 	}
 

@@ -52,4 +52,18 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 		selectDishView.showView();
 	}
 
+	//Goes from selectedDishView to dinnerOverview
+	this.showDinnerOverview = function() {
+		selectedDishView.hideView();
+		myDinnerTabView.hideView();
+		dinnerOverviewView.showView();
+	}
+
+	//Goes from selectedDishView to selectDishView
+	this.backFromDinnerOverview = function() {
+		selectDishView.showView();
+		myDinnerTabView.showView();
+		dinnerOverviewView.hideView();
+	}
+
 }

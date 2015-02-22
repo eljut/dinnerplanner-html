@@ -6,6 +6,7 @@ var DinnerOverviewView = function (container,model) {
 	this.container = container;
 
 	this.showView = function() {
+		console.log("---Showing dinnerOverviewView!");
 		this.container.html(
 			'<div class="container">'+
 				'<div class="row" id="my-dinner-bar">'+
@@ -23,6 +24,9 @@ var DinnerOverviewView = function (container,model) {
 				'<button id="print-btn" class="btn btn-default btn-lg" type="button">Print Full Recipe</button>'+
 			'</div>'
 		);
+
+		this.numberOfGuests = container.find("#number-of-guests");
+		this.numberOfGuests.html(model.getNumberOfGuests());
 
 		this.dinner = container.find("#dinner");
 		var fullMenu = model.getFullMenu();
@@ -47,7 +51,9 @@ var DinnerOverviewView = function (container,model) {
 	}
 
 	this.hideView = function() {
-		
+		console.log("---Hiding dinnerOverviewView!");
+		this.container.removeClass("col-sm-9 no-side-padding");
+		container.empty();
 	}
 
 }
