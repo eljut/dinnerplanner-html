@@ -12,15 +12,14 @@ var StartMessageView = function (container,model) {
 	this.showView = function() {
 		console.log("---Showing startMessageView");
 		container.removeClass("no-padding no-margin");
-		container.append(
-			this.contents
-		);
+		container.html(this.contents);
 	}
 
 	this.hideView = function() {
 		console.log("---Hiding startMessageView");
 		container.addClass("no-padding no-margin");
 		this.contents = container.children().detach();
+		model.emptyMenu();
 	}
 
 }

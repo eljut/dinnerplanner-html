@@ -46,5 +46,9 @@ var DinnerOverviewView = function (container,model) {
 		)
 	}
 
+	this.hideView = function() {
+		
+	}
+
 }
  

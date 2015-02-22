@@ -8,7 +8,14 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 	this.hideStart = function() {
 		navbarView.makeOpaque();
 		startMessageView.hideView();
-		backgroundView.toggleBackground();
+		backgroundView.hideBackground();
+	}
+
+	//Shows the start screen
+	this.showStart = function() {
+		navbarView.makeTransparent();
+		startMessageView.showView();
+		backgroundView.showBackground();
 	}
 
 	//Goes from start screen to select dish screen
@@ -18,6 +25,18 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 		$("#view-container").addClass("row full-height");
 		myDinnerTabView.showView();
 		selectDishView.showView();
+	}
+
+	//Goes back to start screen
+	this.backToStart = function() {
+		myDinnerTabView.hideView();
+		selectDishView.hideView();
+		selectedDishView.hideView();
+		dinnerOverviewView.hideView();
+		dinnerPreparationView.hideView();
+		$("#view-container").removeClass("row full-height");
+
+		this.showStart();
 	}
 
 	//Goes from selectDishView to selectedDishView

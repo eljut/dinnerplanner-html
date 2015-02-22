@@ -8,17 +8,19 @@ var DinnerModel = function() {
 	this.observers = [];
 
 
-	//Adding new observer to the array
+	//Adds new observer to the array
 	this.addObserver = function(observer) {
 		this.observers.push(observer);
 	}
 
+	//Notifies all observers
 	this.notifyObservers = function(obj) {
 		for(obs in this.observers) {
 			this.observers[obs].update(obj);
 		}
 	}
 
+	//Sets the number of guests to num
 	this.setNumberOfGuests = function(num) {
 		if(num > 0) {
 			this.numberOfGuests = num;
@@ -26,7 +28,7 @@ var DinnerModel = function() {
 		}
 	}
 
-	// should return 
+	//Returns number of guests
 	this.getNumberOfGuests = function() {
 		return parseInt(this.numberOfGuests);
 	}
@@ -105,7 +107,13 @@ var DinnerModel = function() {
 		}
 	}
 
-	//function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
+	//Removes all dishes from menu
+	this.emptyMenu = function() {
+		this.menu = [];
+		this.notifyObservers("menuDishRemoved");
+	}
+
+	//Function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
@@ -127,7 +135,7 @@ var DinnerModel = function() {
 	  });	
 	}
 
-	//function that returns a dish of specific ID
+	//Function that returns a dish of specific ID
 	this.getDish = function (id) {
 	  for(key in dishes){
 			if(dishes[key].id == id) {

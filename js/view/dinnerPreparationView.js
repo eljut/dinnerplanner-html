@@ -41,6 +41,10 @@ var DinnerPreparationView = function (container,model) {
 			);
 		}
 	}
+
+	this.hideView = function() {
+		
+	}
 	
 }
  
