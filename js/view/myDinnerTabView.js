@@ -40,9 +40,9 @@ var MyDinnerTabView = function (container,model) {
 		var menu = model.getFullMenu();
 		var menuItemContent = '';
 		for ( var i = 0; i < menu.length; i++ ) {
-			menuItemContent = 
-				'<a href="#remove" title="Remove" class="remove">X</a>'+
-				'<div id="dish-id" class="col-sm-3 dinner-col">'+
+			menuItemContent =
+				'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].id+'">X</a>'+
+				'<div class="col-sm-3 dinner-col">'+
 					menu[i].id+
 				'</div>'+
 				'<div class="col-sm-6 dinner-col">'+
@@ -112,7 +112,7 @@ var MyDinnerTabView = function (container,model) {
 	}
 
 	this.update = function(obj) {
-		if (obj === "menuDishAdded") {
+		if (obj === "menuDishAdded" || obj === "menuDishRemoved") {
 			// Remove dishes from menu
 			container.find("#menu-starter").empty();
 			container.find("#menu-main").empty();
@@ -122,9 +122,9 @@ var MyDinnerTabView = function (container,model) {
 			var menu = model.getFullMenu();
 			var menuItemContent = '';
 			for ( var i = 0; i < menu.length; i++ ) {
-				menuItemContent = 
-					'<a href="#remove" title="Remove" class="remove">X</a>'+
-					'<div id="dish-id" class="col-sm-3 dinner-col">'+
+				menuItemContent =  
+					'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].id+'">X</a>'+
+					'<div class="col-sm-3 dinner-col">'+
 						menu[i].id+
 					'</div>'+
 					'<div class="col-sm-6 dinner-col">'+

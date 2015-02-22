@@ -110,7 +110,7 @@ var DinnerModel = function() {
 	//Removes all dishes from menu
 	this.emptyMenu = function() {
 		this.menu = [];
-		this.notifyObservers("menuDishRemoved");
+		this.notifyObservers("menuDishesRemoved");
 	}
 
 	//Function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
