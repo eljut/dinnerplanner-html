@@ -1,5 +1,7 @@
 //StartMessageView Object constructor
 var StartMessageView = function (container,model) {
+
+	this.container = container;
 	
 	this.contents = '<h1>A Home Dinner Service</h1>'+
 		'<hr><p>'+
@@ -13,8 +15,6 @@ var StartMessageView = function (container,model) {
 		container.append(
 			this.contents
 		);
-
-		this.newDinnerButton = container.find("#new-dinner-btn");
 	}
 
 	this.hideView = function() {

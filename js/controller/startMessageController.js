@@ -1,7 +1,7 @@
 //StartMessageController Object constructor
 var StartMessageController = function (view,model,stateController) {
 
-	view.newDinnerButton.click(function() {
+	view.container.on("click", "#new-dinner-btn", function(event) {
 		stateController.newDinner();
 	});
 }
