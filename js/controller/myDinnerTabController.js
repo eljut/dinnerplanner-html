@@ -1,6 +1,7 @@
 //MyDinnerTabController Object constructor
 var MyDinnerTabController = function (view,model,stateController) {
 
+	//Remove-buttons controller
 	view.container.on("click", ".remove", function(event) {
 		console.log("Removing dish");
 		var id = $(this).data("dish-id");
@@ -9,12 +10,16 @@ var MyDinnerTabController = function (view,model,stateController) {
 		event.preventDefault();
 	});
 
-	view.container.on("change", "#menu", function(event) {
-		console.log("Menu changed");
+	//Go to Dinner Overview
+	view.container.on("click", "#confirm-dinner-btn", function(event) {
+		stateController.showDinnerOverview();
 	});
 
-	view.container.on("click", "#confirm-dinner-btn", function(event) {
-		//console.log("Going back to select dish!");
-		stateController.showDinnerOverview();
+	//Updates number of guests
+	view.container.on("change", "#number-of-guests", function(event) {
+		console.log("Changing number of guests");
+		var numberOfGuests = view.container.find("#number-of-guests").val();
+		model.setNumberOfGuests(numberOfGuests);
+		console.log("Changing number of guests to: "+numberOfGuests);
 	});
 }

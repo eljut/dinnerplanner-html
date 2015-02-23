@@ -16,7 +16,7 @@ var MyDinnerTabView = function (container,model) {
 			'<h3>My Dinner</h3>'+
 			'<div>'+
 				'<label for="number-of-guests">People</label>'+
-				'<input type="number" step="1" name="People" id="number-of-guests" value="'+model.getNumberOfGuests()+'">'+
+				'<input type="number" min="1" step="1" name="People" id="number-of-guests" value="'+model.getNumberOfGuests()+'">'+
 			'</div>'+
 			'<div id="menu-head" class="row th">'+
 				'<div class="col-sm-3 dinner-col">'+
@@ -112,7 +112,7 @@ var MyDinnerTabView = function (container,model) {
 	}
 
 	this.update = function(obj) {
-		if (obj === "menuDishAdded" || obj === "menuDishRemoved") {
+		if (obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
 			// Remove dishes from menu
 			container.find("#menu-starter").empty();
 			container.find("#menu-main").empty();
