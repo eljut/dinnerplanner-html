@@ -22,4 +22,19 @@ var MyDinnerTabController = function (view,model,stateController) {
 		model.setNumberOfGuests(numberOfGuests);
 		console.log("Changing number of guests to: "+numberOfGuests);
 	});
+
+	//Selects dish on menu
+	view.container.on("click", "#menu-starter, #menu-main, #menu-dessert", function(event) {
+		console.log("menu-starter clicked");
+		var id = $(this).children().data("dish-id");
+		console.log("Clicked dish with id: "+id);
+		if(typeof id === 'undefined') {
+			console.log("Id was undefined, going back to select dish");
+			stateController.backFromSelectedDish();
+		} else {
+			stateController.showSelectedDish(id);
+			
+		}
+
+	});
 }

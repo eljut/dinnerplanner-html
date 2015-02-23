@@ -29,11 +29,11 @@ var MyDinnerTabView = function (container,model) {
 					'Cost'+
 				'</div>'+
 			'</div>'+
-			'<div id="menu">'+
+			'<a href="#" id="menu">'+
 				'<div id="menu-starter"></div>'+
 				'<div id="menu-main"></div>'+
 				'<div id="menu-dessert"></div>'+
-			'</div>'
+			'</a'
 		);
 
 		// Add dishes to menu
