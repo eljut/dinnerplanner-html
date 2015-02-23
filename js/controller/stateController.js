@@ -39,11 +39,12 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 		this.showStart();
 	}
 
-	//Goes from selectDishView to selectedDishView
+	//Goes from selectDishView to selectedDishView and updates pending
 	this.showSelectedDish = function(id) {
 		console.log("Visar maträtt med id: "+id);
 		selectDishView.hideView();
 		selectedDishView.showView(id);
+		myDinnerTabView.pending(id);
 	}
 
 	//Goes from selectedDishView to selectDishView

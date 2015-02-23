@@ -23,7 +23,7 @@ $(function() {
 	var backgroundController = new BackgroundController(backgroundView, model, stateController);
 	var startMessageController = new StartMessageController(startMessageView, model, stateController);
 	var myDinnerTabController = new MyDinnerTabController(myDinnerTabView, model, stateController);
-	var selectDishController = new SelectDishController(selectDishView, myDinnerTabView, model, stateController);
+	var selectDishController = new SelectDishController(selectDishView, model, stateController);
 	var selectedDishController = new SelectedDishController(selectedDishView, model, stateController);
 	var dinnerOverControllerController = new DinnerOverviewController(dinnerOverviewView, model, stateController);
 	var dinnerPreparationController = new DinnerPreparationController(dinnerPreparationView, model, stateController);
