@@ -76,7 +76,7 @@ var MyDinnerTabView = function (container,model) {
 					'Pending'+
 				'</div>'+
 				'<div class="col-sm-3 dinner-col">'+
-					'0.00'+
+					'<span id="pending-dish">0.00</span>'+
 				'</div>'+
 			'</div>'+
 			'<hr>'+
@@ -111,8 +111,28 @@ var MyDinnerTabView = function (container,model) {
 		this.container.children().remove();
 	}
 
+	this.pending = function(id) {
+		this.pendingDish = container.find("#pending-dish");
+		this.pendingDish.html(
+			model.getDishPrice(id)
+		);
+	} 
+
 	this.update = function(obj) {
 		if (obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
+			
+			// if (obj === "menuDishRemoved") {
+			// 	if (typeof model.getSelectedDish('starter') === 'undefined') {
+			// 		container.find("#menu-starter").remove();
+			// 	}
+			// 	if (model.getSelectedDish('main') === null) {
+			// 		container.find("#menu-main").remove();
+			// 	}
+			// 	if (model.getSelectedDish('dessert') === null) {
+			// 		container.find("#menu-dessert").remove();
+			// 	}
+			// }
+
 			// Remove dishes from menu
 			container.find("#menu-starter").empty();
 			container.find("#menu-main").empty();
@@ -150,6 +170,9 @@ var MyDinnerTabView = function (container,model) {
 			}
 
 			$("#total-cost").html(model.getTotalMenuPrice());
+
+			this.pendingDish = container.find("#pending-dish");
+			this.pendingDish.html('0.00');
 
 			this.confirmButton.html(
 				'<div class="confirm-div">'+

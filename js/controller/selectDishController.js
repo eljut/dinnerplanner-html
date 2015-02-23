@@ -1,5 +1,5 @@
 //SelectDishController Object constructor
-var SelectDishController = function (view,model,stateController) {
+var SelectDishController = function (view,myDinnerTabView,model,stateController) {
 
 	//http://learn.jquery.com/events/event-delegation/
 
@@ -36,6 +36,7 @@ var SelectDishController = function (view,model,stateController) {
 	view.container.on("click", ".dish-head", function(event) {
 		var id = $(this).parent().data("dish-id");
 		stateController.showSelectedDish(id);
+		myDinnerTabView.pending(id);
 	});
 
 	//Shows all dishes of stated type. Can be filtered.
