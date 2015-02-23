@@ -5,4 +5,11 @@ var DinnerOverviewController = function (view,model,stateController) {
 		console.log("Going back to select dish!");
 		stateController.backFromDinnerOverview();
 	});
+
+	view.container.on("click", "#print-btn", function(event) {
+		console.log("Going to dinnerPreparation!");
+		stateController.showDinnerPreparation();
+	});
+
+	
 }

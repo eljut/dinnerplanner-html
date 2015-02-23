@@ -43,7 +43,9 @@ var DinnerPreparationView = function (container,model) {
 	}
 
 	this.hideView = function() {
-		
+		console.log("---Hiding dinnerPreparationView!");
+		this.container.removeClass("col-sm-3 full-height");
+		this.container.children().remove();
 	}
 	
 }
