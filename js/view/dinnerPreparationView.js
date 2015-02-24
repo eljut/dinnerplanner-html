@@ -26,7 +26,7 @@ var DinnerPreparationView = function (container,model) {
 		var fullMenu = model.getFullMenu();
 		for ( var i = 0; i < fullMenu.length; i++ ) {
 			this.container.append(
-				'<div class="row">'+
+				'<div class="row" id="preparation-padding">'+
 					'<div id="dish-div" class="col-sm-3">'+
 						'<span id="dish-image"><img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'"></img></span>'+
 					'</div>'+

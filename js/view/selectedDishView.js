@@ -33,7 +33,7 @@ var SelectedDishView = function (container,model) {
 						'<div id="listOfIngredients"></div>'+
 					'</div>'+
 					'<hr>'+
-					'<div class="row">'+
+					'<div class="row" id="table-total">'+
 						'<div class="col-sm-7 dinner-col">'+
 							'<button data-dish-id="'+this.selectedDish.id+'" id="confirm-dish-btn" class="btn btn-default btn-lg" type="button">Confirm Dish</button>'+
 						'</div><div class="col-sm-2 dinner-col">'+

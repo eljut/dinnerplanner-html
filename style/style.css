@@ -124,6 +124,11 @@ hr {
 	margin-right: auto;
 }
 
+#back-btn {
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
 
 /* "My dinner" column */
 #my-dinner {
@@ -273,9 +278,13 @@ hr {
 	border: 2px solid;
 }
 
-#list-of-ingredients {
-	padding-left: 40px;
+#listOfIngredients {
+	/*padding-left: 40px;*/
+	margin-left: 45px;
+}
 
+#table-total {
+	margin-left: 35px;
 }
 
 #selected-dish-head {
@@ -357,6 +366,11 @@ hr {
 #dish-div {
 	height:186px;
 	margin-top: 30px;
+}
+
+#preparation-padding {
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 
