@@ -44,13 +44,14 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 		console.log("Visar maträtt med id: "+id);
 		selectDishView.hideView();
 		selectedDishView.showView(id);
-		myDinnerTabView.pending(id);
+		myDinnerTabView.setPending(id);
 	}
 
 	//Goes from selectedDishView to selectDishView
 	this.backFromSelectedDish = function() {
 		selectedDishView.hideView();
 		selectDishView.showView();
+		myDinnerTabView.clearPending();
 	}
 
 	//Goes from selectDishView to dinnerOverview
@@ -62,9 +63,9 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 
 	//Goes from dinnerOverviewView to selectDishView
 	this.backFromDinnerOverview = function() {
+		dinnerOverviewView.hideView();
 		selectDishView.showView();
 		myDinnerTabView.showView();
-		dinnerOverviewView.hideView();
 	}
 
 	//Goes from dinnerOverview to dinnerPreparation
@@ -75,8 +76,8 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 
 	//Goes from dinnerPreparation to selectDish
 	this.backFromDinnerPreparation = function() {
+		dinnerPreparationView.hideView();
 		selectDishView.showView();
 		myDinnerTabView.showView();
-		dinnerPreparationView.hideView();
 	}
 }

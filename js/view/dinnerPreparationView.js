@@ -9,14 +9,14 @@ var DinnerPreparationView = function (container,model) {
 		this.container.append(
 			'<div class="container">'+
 				'<div class="row" id="my-dinner-bar">'+
-					'<div class="col-sm-9 dinner-col">'+
+					'<div class="col-sm-9">'+
 						'<h3 class="my-dinner-head">'+
 							'My Dinner: <span id="number-of-guests">'+
 								model.getNumberOfGuests()+
 							'</span> people'+
 						'</h3>'+
 					'</div>'+
-					'<div class="col-sm-3 dinner-col no-side-padding">'+
+					'<div class="col-sm-3 no-side-padding">'+
 						'<button id="edit-dinner-btn" class="arrow-box" type="button">Go back and edit dinner</button>'+
 					'</div>'+
 				'</div>'+
@@ -27,13 +27,13 @@ var DinnerPreparationView = function (container,model) {
 		for ( var i = 0; i < fullMenu.length; i++ ) {
 			this.container.append(
 				'<div class="row">'+
-					'<div id="dish-div" class="col-sm-3 dinner-col">'+
+					'<div id="dish-div" class="col-sm-3">'+
 						'<span id="dish-image"><img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'"></img></span>'+
 					'</div>'+
-					'<div class="col-sm-4 dinner-col">'+
+					'<div class="col-sm-4">'+
 						'<h3>'+fullMenu[i].name+'</h3>'+
 					'</div>'+
-					'<div class="col-sm-5 dinner-col">'+
+					'<div class="col-sm-5">'+
 						'<h3>Preparation</h3>'+
 						'<div class="dish-descr"><p>'+fullMenu[i].description+'</p></div>'+
 					'</div>'+

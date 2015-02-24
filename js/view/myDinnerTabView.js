@@ -29,11 +29,11 @@ var MyDinnerTabView = function (container,model) {
 					'Cost'+
 				'</div>'+
 			'</div>'+
-			'<a href="#" id="menu">'+
+			'<div id="menu">'+
 				'<div id="menu-starter"></div>'+
 				'<div id="menu-main"></div>'+
 				'<div id="menu-dessert"></div>'+
-			'</a'
+			'</div>'
 		);
 
 		// Add dishes to menu
@@ -83,25 +83,22 @@ var MyDinnerTabView = function (container,model) {
 			'<div class="right-aligned">'+
 				'SEK <span id="total-cost">'+model.getTotalMenuPrice()+'</span>'+
 			'</div>'+
-			'<div id="confirm-button"></div>'+
+			'<div id="confirm-div"></div>'+
 			'</div>'
 		);
 
-		this.numberOfGuests = container.find("#number-of-guests");
+		//this.numberOfGuests = container.find("#number-of-guests");
 
+		this.confirmDiv = container.find("#confirm-div");
+		this.confirmDiv.html(
+			'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'
+		);
 		if (menu.length == 0) {
-			this.confirmButton = container.find("#confirm-button").empty();
-			this.confirmButton.html(
-				'<div class="confirm-div">'+
-					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button" disabled>Confirm dinner</button>'+
-				'</div>'
-			)} else {
-				this.confirmButton = container.find("#confirm-button").empty();
-				this.confirmButton.html(
-					'<div class="confirm-div">'+
-						'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
-					'</div>'
-			)}; 
+			this.confirmDiv.find("#confirm-dinner-btn").attr("disabled", true);
+		}
+		else {
+			this.confirmDiv.find("#confirm-dinner-btn").attr("disabled", false);
+		}
 
 	}
 
@@ -111,12 +108,28 @@ var MyDinnerTabView = function (container,model) {
 		this.container.children().remove();
 	}
 
-	this.pending = function(id) {
-		this.pendingDish = container.find("#pending-dish");
-		this.pendingDish.html(
-			model.getDishPrice(id)
-		);
-	} 
+	this.setPending = function(id) {
+		container.find("#pending").addClass("pending-active");
+		container.find("#pending-dish").html(model.getDishPrice(id));
+
+		//Set pending total price
+		var pendingDish = model.getDish(id);
+		var replacedDish = model.getSelectedDish(pendingDish.type);
+		var currentMenuPrice = model.getTotalMenuPrice();
+		var pendingDishPrice = model.getDishPrice(pendingDish.id);
+		if(replacedDish) {
+			var replacedDishPrice = model.getDishPrice(replacedDish.id);
+			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice-replacedDishPrice);
+		} else {
+			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice);
+		}
+	}
+
+	this.clearPending = function() {
+		container.find("#pending").removeClass("pending-active");
+		container.find("#pending-dish").html('0.00');
+		container.find("#total-cost").html(model.getTotalMenuPrice());
+	}
 
 	this.update = function(obj) {
 		if (obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
@@ -134,9 +147,9 @@ var MyDinnerTabView = function (container,model) {
 			// }
 
 			// Remove dishes from menu
-			container.find("#menu-starter").empty();
-			container.find("#menu-main").empty();
-			container.find("#menu-dessert").empty();
+			container.find("#menu-starter").empty().removeClass("row menu-item");
+			container.find("#menu-main").empty().removeClass("row menu-item");
+			container.find("#menu-dessert").empty().removeClass("row menu-item");
 			
 			// Add dishes to menu
 			var menu = model.getFullMenu();
@@ -169,16 +182,22 @@ var MyDinnerTabView = function (container,model) {
 				}
 			}
 
-			$("#total-cost").html(model.getTotalMenuPrice());
+			container.find("#total-cost").html(model.getTotalMenuPrice());
 
-			this.pendingDish = container.find("#pending-dish");
-			this.pendingDish.html('0.00');
+			if (obj === "menuDishAdded") {
+				this.clearPending();
+			} else if (obj === "updateNumberOfGuests") {
+				var dishIdContainer = $("#confirm-dish-btn");
+				if(dishIdContainer.length) {
+					this.setPending(dishIdContainer.data("dish-id"));
+				}
+			}
 
-			this.confirmButton.html(
-				'<div class="confirm-div">'+
-					'<button id="confirm-dinner-btn" class="btn btn-default btn-lg" type="button">Confirm dinner</button>'+
-				'</div>'
-			);
+			if (menu.length == 0) {
+				this.confirmDiv.find("#confirm-dinner-btn").attr("disabled", true);
+			} else {
+				this.confirmDiv.find("#confirm-dinner-btn").attr("disabled", false);
+			}
 		}
 	}
 

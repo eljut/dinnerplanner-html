@@ -10,10 +10,10 @@ var DinnerOverviewView = function (container,model) {
 		this.container.html(
 			'<div class="container">'+
 				'<div class="row" id="my-dinner-bar">'+
-					'<div class="col-sm-9 dinner-col">'+
+					'<div class="col-sm-9">'+
 						'<h3 class="my-dinner-head">My Dinner: <span id="number-of-guests"></span> people</h3>'+
 					'</div>'+
-					'<div class="col-sm-3 dinner-col no-side-padding">'+
+					'<div class="col-sm-3 no-side-padding">'+
 						'<button id="edit-dinner-btn" class="arrow-box" type="button">Go back and edit dinner</button>'+
 					'</div>'+
 				'</div>'+
