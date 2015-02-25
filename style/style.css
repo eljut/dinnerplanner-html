@@ -179,11 +179,11 @@ hr {
 	text-decoration: none;
 	background: #F06061;
 	color: #000;
-	transform: scale(2.05);
-	-ms-transform: scale(2.05); /* IE 9 */
-	-webkit-transform: scale(2.05); /* Safari and Chrome */
-	-o-transform: scale(2.05); /* Opera */
-	-moz-transform: scale(2.05); /* Firefox */
+	transform: scale(1.15);
+	-ms-transform: scale(1.15); /* IE 9 */
+	-webkit-transform: scale(1.15); /* Safari and Chrome */
+	-o-transform: scale(1.15); /* Opera */
+	-moz-transform: scale(1.15); /* Firefox */
 
 	-webkit-box-shadow:	0px 2px 6px rgba(0, 0, 0, .45);
     -moz-box-shadow:	0px 2px 6px rgba(0, 0, 0, .45);
