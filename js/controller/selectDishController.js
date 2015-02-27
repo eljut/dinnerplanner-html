@@ -1,14 +1,12 @@
 //SelectDishController Object constructor
 var SelectDishController = function (view,model,stateController) {
 
-	//http://learn.jquery.com/events/event-delegation/
-
 	//Change Dishes by type
-	view.container.on("change", "#dish-type", function(event) {
+	/*view.container.on("change", "#dish-type", function(event) {
 		console.log("---Changing dishes by dish type!");
 		console.log("Value: " + this.value + "!");
 		showDishes(this.value);
-	});
+	});*/
 
 	//Search when search-button is clicked
 	view.container.on("click", "#search-button", function(event) {
@@ -40,20 +38,9 @@ var SelectDishController = function (view,model,stateController) {
 
 	//Shows all dishes of stated type. Can be filtered.
 	var showDishes = function(type,filter) {
-		var allDishes = model.getAllDishes(type,filter);
 		var dishes = view.container.find("#dishes");
 		dishes.html("");
-		for ( var i = 0; i < allDishes.length; i++ ) {
-			dishes.append(
-				'<div class="dish" data-dish-id="'+allDishes[i].id+'">'+
-					'<div class="dish-head">'+
-						'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
-						'<span class="dish-name">'+allDishes[i].name+'</span>'+
-					'</div>'+
-					'<div class="dish-descr">'+allDishes[i].description+'</div>'+
-				'</div>'
-				);
-		}
+		model.getAllDishes(type,filter);
 	}
 
 }

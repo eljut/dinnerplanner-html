@@ -6,7 +6,15 @@ var DinnerModel = function() {
 	this.numberOfGuests = 3;
 	this.menu = [];
 	this.observers = [];
+	this.currentState = '';
 
+	this.setCurrentState = function(state) {
+		this.currentState = state;
+	}
+
+	this.getCurrentState = function() {
+		return this.currentState;
+	}
 
 	//Adds new observer to the array
 	this.addObserver = function(observer) {
@@ -68,14 +76,14 @@ var DinnerModel = function() {
 	}
 
 	//Returns the price of a dish (all the ingredients multiplied by number of guests).
-	this.getDishPrice = function(id) {
-		var dish = this.getDish(id);
-		var price = 0;
-		for(key in dish.ingredients) {
-			price += parseFloat(dish.ingredients[key].price) * this.numberOfGuests;
-		}
-		return price;
-	}
+	// this.getDishPrice = function(id) {
+	// 	var dish = this.getDish(id);
+	// 	var price = 0;
+	// 	for(key in dish.ingredients) {
+	// 		price += parseFloat(dish.ingredients[key].price) * this.numberOfGuests;
+	// 	}
+	// 	return price;
+	// }
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
@@ -113,35 +121,72 @@ var DinnerModel = function() {
 		this.notifyObservers("menuDishesRemoved");
 	}
 
-	//Function that returns all dishes of specific type (i.e. "starter", "main dish" or "dessert")
+	//Function that notifies observers with all dishes of specific type (i.e. "starter", "main dish" or "dessert")
 	//you can use the filter argument to filter out the dish by name or ingredient (use for search)
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
-	  return $(dishes).filter(function(index,dish) {
-		var found = true;
-		if(filter){
-			found = false;
-			$.each(dish.ingredients,function(index,ingredient) {
-				if(ingredient.name.indexOf(filter)!=-1) {
-					found = true;
-				}
-			});
-			if(dish.name.indexOf(filter) != -1)
-			{
-				found = true;
+		filter = typeof filter !== 'undefined' ? filter : '';
+		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var url = "http://api.bigoven.com/recipes?pg=1&rpp=3&any_kw="+type+"+"+filter+"&api_key="+apiKey;
+		console.log("Filter is:"+filter);
+		console.log("url is: "+url);
+
+		//Adds description to the dishes
+		//Notifies observers with the dish which had a description added
+		var addDescription = function(dishes,model) {
+			var recipeID = '';
+			for(var i = 0; i < dishes.length; i++)  {
+				console.log("outside: "+i);
+				recipeID = dishes[i].RecipeID;
+				url = "http://api.bigoven.com/recipe/"+recipeID+"?api_key="+apiKey;
+				(function(i) {
+					$.ajax({
+						type: "GET",
+						dataType: 'json',
+						cache: false,
+						context: model,
+						url: url,
+						success: function (data) {
+							console.log("-----\ninside: "+i);
+							dishes[i].Description = data.Description;
+							model.notifyObservers(dishes[i]);
+						}
+					});
+				})(i);
 			}
 		}
-	  	return dish.type == type && found;
-	  });	
+
+		$.ajax({
+			type: "GET",
+			dataType: 'json',
+			cache: false,
+			context: this, //this == dinnerModel
+			url: url,
+			success: function (data) {
+				console.log("Check if this==model--->this.numberOfGuests(): "+this.getNumberOfGuests());
+				var dishes = data.Results;
+				addDescription(dishes,this);
+			}
+		});
 	}
 
 	//Function that returns a dish of specific ID
 	this.getDish = function (id) {
-	  for(key in dishes){
-			if(dishes[key].id == id) {
-				return dishes[key];
+		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
+		console.log("url: "+url);
+		$.ajax({
+			type: "GET",
+			dataType: 'json',
+			cache: false,
+			context: this, //this == dinnerModel
+			url: url,
+			success: function (data) {
+				console.log("Check if this==model--->this.numberOfGuests(): "+this.getNumberOfGuests());
+				console.log(data);
+				this.notifyObservers(data);
 			}
-		}
+		});
 	}
 
 
@@ -153,7 +198,7 @@ var DinnerModel = function() {
 	// defining the unit i.e. "g", "slices", "ml". Unit
 	// can sometimes be empty like in the example of eggs where
 	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
-	var dishes = [{
+	/*var dishes = [{
 		'id':1,
 		'name':'French toast',
 		'type':'starter',
@@ -394,6 +439,6 @@ var DinnerModel = function() {
 			'price':6
 			}]
 		}
-	];
+	];*/
 
 }

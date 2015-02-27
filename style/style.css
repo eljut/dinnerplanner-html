@@ -298,6 +298,10 @@ hr {
 	padding-left: 10px;
 }
 
+#selected-dish img {
+	width: 100%;
+}
+
 
 /* "Dinner Overview"-page layout*/
 #my-dinner-bar {

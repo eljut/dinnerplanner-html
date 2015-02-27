@@ -9,6 +9,7 @@ var SelectDishView = function (container,model) {
 	model.addObserver(this);
 
 	this.showView = function() {
+		model.setCurrentState("selectDish");
 		console.log("---Showing selectDishView!");
 		this.container.addClass("col-sm-9 no-side-padding");
 		this.container.html(
@@ -18,7 +19,7 @@ var SelectDishView = function (container,model) {
 				'<input id="search-bar" type="search" placeholder="Enter key words">'+
 				'<button id="search-button">Search</button>'+
 				'<select id="dish-type">'+
-					'<option value="starter">Starter</option>'+
+					'<option value="appetizer">Starter</option>'+
 					'<option value="main dish">Main</option>'+
 					'<option value="dessert">Dessert</option>'+
 				'</select>'+
@@ -26,22 +27,9 @@ var SelectDishView = function (container,model) {
 			'<div id="dishes"></div>'
 			);
 
-		//Select dish
-		this.dishes = container.find("#dishes");
+		//Get dishes
 		this.dishType = container.find("#dish-type");
-		var allDishes = model.getAllDishes(this.dishType.val());
-
-		for ( var i = 0; i < allDishes.length; i++ ) {
-			this.dishes.append(
-				'<div class="dish" data-dish-id="'+allDishes[i].id+'">'+
-					'<div class="dish-head">'+
-						'<img src="images/'+allDishes[i].image+'" alt="'+allDishes[i].name+'">'+
-						'<span class="dish-name">'+allDishes[i].name+'</span>'+
-					'</div>'+
-					'<div class="dish-descr">'+allDishes[i].description+'</div>'+
-				'</div>'
-				);
-		}
+		model.getAllDishes(this.dishType.val());
 	}
 
 	this.hideView = function() {
@@ -51,7 +39,19 @@ var SelectDishView = function (container,model) {
 	}
 
 	this.update = function(obj) {
-
+		if(model.getCurrentState() === "selectDish" && typeof obj === 'object') {
+			this.dishes = container.find("#dishes");
+			var dish = obj;
+			this.dishes.append(
+				'<div class="dish" data-dish-id="'+dish.RecipeID+'">'+
+					'<div class="dish-head">'+
+						'<img src="'+dish.ImageURL120+'" alt="'+dish.Title+'">'+
+						'<span class="dish-name">'+dish.Title+'</span>'+
+					'</div>'+
+					'<div class="dish-descr">'+dish.Description+'</div>'+
+				'</div>'
+				);
+		}
 	}
 	
 }
