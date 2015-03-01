@@ -28,14 +28,15 @@ var DinnerPreparationView = function (container,model) {
 			this.container.append(
 				'<div class="row no-margin" id="preparation-padding">'+
 					'<div id="dish-div" class="col-sm-3">'+
-						'<span id="dish-image"><img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'"></img></span>'+
+						'<img id="dish-image" src="'+fullMenu[i].ImageURL+'" alt="'+fullMenu[i].Title+'"></img>'+
 					'</div>'+
-					'<div class="col-sm-4">'+
-						'<h3>'+fullMenu[i].name+'</h3>'+
+					'<div id="dish-div" class="col-sm-4">'+
+						'<h3>'+fullMenu[i].Title+'</h3>'+
+						'<div><p>'+fullMenu[i].Description+'</p></div>'+
 					'</div>'+
-					'<div class="col-sm-5">'+
+					'<div id="dish-div" class="col-sm-5">'+
 						'<h3>Preparation</h3>'+
-						'<div class="dish-descr"><p>'+fullMenu[i].description+'</p></div>'+
+						'<div><pre>'+fullMenu[i].Instructions+'</pre></div>'+
 					'</div>'+
 				'</div>'
 			);
