@@ -2,11 +2,11 @@
 var SelectDishController = function (view,model,stateController) {
 
 	//Change Dishes by type
-	/*view.container.on("change", "#dish-type", function(event) {
+	view.container.on("change", "#dish-type", function(event) {
 		console.log("---Changing dishes by dish type!");
 		console.log("Value: " + this.value + "!");
 		showDishes(this.value);
-	});*/
+	});
 
 	//Search when search-button is clicked
 	view.container.on("click", "#search-button", function(event) {

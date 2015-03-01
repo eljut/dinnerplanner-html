@@ -49,7 +49,7 @@ var DinnerModel = function() {
 	//Returns the dish that is on the menu for selected type 
 	this.getSelectedDish = function(type) {
 		for(key in this.menu) {
-			if(this.menu[key].type == type) {
+			if(this.menu[key].Category == type) {
 				return this.menu[key];
 			}
 		}

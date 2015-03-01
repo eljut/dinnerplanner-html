@@ -41,26 +41,26 @@ var MyDinnerTabView = function (container,model) {
 		var menuItemContent = '';
 		for ( var i = 0; i < menu.length; i++ ) {
 			menuItemContent =
-				'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].id+'">X</a>'+
+				'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].RecipeID+'">X</a>'+
 				'<div class="col-sm-3 dinner-col">'+
-					menu[i].id+
+					menu[i].RecipeID+
 				'</div>'+
 				'<div class="col-sm-6 dinner-col">'+
-					menu[i].name+
+					menu[i].Title+
 				'</div>'+
 				'<div class="col-sm-3 dinner-col">'+
-					model.getDishPrice(menu[i].id)+
+					+model.getDishPrice(menu[i]).toFixed(2)+
 				'</div>'
-			switch(menu[i].type) {
-				case "starter":
+			switch(menu[i].Category) {
+				case "Appetizers":
 					$("#menu-starter").addClass("row menu-item");
 					$("#menu-starter").html(menuItemContent);
 					break;
-				case "main dish":
+				case "Main Dish":
 					$("#menu-main").addClass("row menu-item");
 					$("#menu-main").html(menuItemContent);
 					break;
-				case "dessert":
+				case "Desserts":
 					$("#menu-dessert").addClass("row menu-item");
 					$("#menu-dessert").html(menuItemContent);
 					break;
@@ -173,9 +173,9 @@ var MyDinnerTabView = function (container,model) {
 			if (obj === "menuDishAdded") {
 				this.clearPending();
 			} else if (obj === "updateNumberOfGuests") {
-				var dishIdContainer = $("#confirm-dish-btn");
-				if(dishIdContainer.length) {
-					this.setPending(dishIdContainer.data("dish-id"));
+				var dishPriceContainer = $("#dish-price");
+				if(dishPriceContainer.length) {
+					container.find("#pending-dish").html(dishPriceContainer.text());
 				}
 			}
 

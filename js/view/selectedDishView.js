@@ -19,7 +19,7 @@ var SelectedDishView = function (container,model) {
 	}
 
 	this.update = function(obj) {
-		if (model.getCurrentState() === "selectedDish" && obj === "updateNumberOfGuests" && $("#selected-dish").length) {
+		if (obj === "updateNumberOfGuests" && $("#selected-dish").length) {
 			container.find("#number-of-guests-2").html(model.getNumberOfGuests());
 			container.find("#dish-price").html((model.getDishPrice(this.selectedDish)).toFixed(2));
 			//this.ingredientsTable = container.find("#listOfIngredients");
@@ -49,7 +49,7 @@ var SelectedDishView = function (container,model) {
 			//container.find("#dish-price").html(+model.getDishPrice(this.selectedDish.id).toFixed(2));
 		}
 
-		if (model.getCurrentState() === "selectedDish" && typeof obj === 'object') {
+		if (typeof obj === 'object' && obj.hasOwnProperty("Ingredients")) {
 			this.selectedDish = obj;
 
 			this.container.html(
