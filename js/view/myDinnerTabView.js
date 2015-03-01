@@ -110,7 +110,7 @@ var MyDinnerTabView = function (container,model) {
 
 	this.setPending = function(dish) {
 		container.find("#pending").addClass("pending-active");
-		container.find("#pending-dish").html(model.getDishPrice(dish));
+		container.find("#pending-dish").html(+model.getDishPrice(dish).toFixed(2));
 
 		//Set pending total price
 		var replacedDish = model.getSelectedDish(dish.Category);
@@ -118,16 +118,16 @@ var MyDinnerTabView = function (container,model) {
 		var pendingDishPrice = model.getDishPrice(dish);
 		if(replacedDish) {
 			var replacedDishPrice = model.getDishPrice(replacedDish);
-			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice-replacedDishPrice);
+			container.find("#total-cost").html(+(currentMenuPrice+pendingDishPrice-replacedDishPrice).toFixed(2));
 		} else {
-			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice);
+			container.find("#total-cost").html(+(currentMenuPrice+pendingDishPrice).toFixed(2));
 		}
 	}
 
 	this.clearPending = function() {
 		container.find("#pending").removeClass("pending-active");
 		container.find("#pending-dish").html('0.00');
-		container.find("#total-cost").html(model.getTotalMenuPrice());
+		container.find("#total-cost").html(+model.getTotalMenuPrice().toFixed(2));
 	}
 
 	this.update = function(obj) {
@@ -141,7 +141,6 @@ var MyDinnerTabView = function (container,model) {
 			var menu = model.getFullMenu();
 			var menuItemContent = '';
 			for ( var i = 0; i < menu.length; i++ ) {
-				console.log("MENU!!!!!!!! "+menu[i].Title);
 				menuItemContent =  
 					'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].RecipeID+'">X</a>'+
 					'<div class="col-sm-3 dinner-col">'+
