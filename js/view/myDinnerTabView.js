@@ -35,7 +35,7 @@ var MyDinnerTabView = function (container,model) {
 				'<div id="menu-dessert"></div>'+
 			'</div>'
 		);
-
+	
 		// Add dishes to menu
 		var menu = model.getFullMenu();
 		var menuItemContent = '';
@@ -153,20 +153,21 @@ var MyDinnerTabView = function (container,model) {
 			
 			// Add dishes to menu
 			var menu = model.getFullMenu();
+			console.log(menu);
 			var menuItemContent = '';
 			for ( var i = 0; i < menu.length; i++ ) {
 				menuItemContent =  
-					'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].id+'">X</a>'+
+					'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].RecipeID+'">X</a>'+
 					'<div class="col-sm-3 dinner-col">'+
-						menu[i].id+
+						menu[i].RecipeID+
 					'</div>'+
 					'<div class="col-sm-6 dinner-col">'+
-						menu[i].name+
+						menu[i].Title+
 					'</div>'+
 					'<div class="col-sm-3 dinner-col">'+
-						model.getDishPrice(menu[i].id)+
+						model.getDishPrice(menu[i].RecipeID)+
 					'</div>'
-				switch(menu[i].type) {
+				switch(menu[i].Category) {
 					case "starter":
 						$("#menu-starter").addClass("row menu-item");
 						$("#menu-starter").html(menuItemContent);

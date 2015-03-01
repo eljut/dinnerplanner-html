@@ -88,20 +88,39 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		var dish = this.getDish(id);
-		for(key in this.menu) {
-			if(this.menu[key].id != dish.id) {
-				if(this.menu[key].type == dish.type) {
-					this.removeDishFromMenu(this.menu[key].id);
-					//this.notifyObservers("menuDishReplaced");
+
+		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
+		console.log("url: "+url);
+		$.ajax({
+			type: "GET",
+			dataType: 'json',
+			cache: false,
+			context: this, //this == dinnerModel
+			url: url,
+			success: function (data) {
+				console.log(data);
+				console.log("Selected dish is: "+data)
+				this.notifyObservers(data);
+
+				for(key in this.menu) {
+					if(this.menu[key].RecipeID != dish.RecipeID) {
+						if(this.menu[key].Category == dish.Category) {
+							this.removeDishFromMenu(this.menu[key].RecipeID);
+							//this.notifyObservers("menuDishReplaced");
+						}
+					} else {
+						return;
+					}
 				}
+				this.menu.push(data);
+				console.log(menu);
+				this.notifyObservers("menuDishAdded");
 			}
-			else {
-				return;
-			}
-		}
-		this.menu.push(dish);
-		this.notifyObservers("menuDishAdded");
+		});
+
+		//var dish = this.getDish(id);
+		
 	}
 
 	//Removes dish from menu
