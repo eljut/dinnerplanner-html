@@ -372,6 +372,10 @@ pre {
 	color: red;
 }
 
+#overview-image {
+	width: 140px;
+}
+
 
 /* DinnerPreparation - layout */
 #dish-image {

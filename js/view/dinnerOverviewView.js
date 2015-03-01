@@ -34,10 +34,10 @@ var DinnerOverviewView = function (container,model) {
 			this.dinner.append(
 				'<div class="dish">'+
 					'<div class="dish-head">'+
-						'<img src="images/'+fullMenu[i].image+'" alt="'+fullMenu[i].name+'">'+
-						'<span class="dish-name">'+fullMenu[i].name+'</span>'+
+						'<img id="overview-image" src="'+fullMenu[i].ImageURL+'" alt="'+fullMenu[i].Title+'">'+
+						'<span class="dish-name">'+fullMenu[i].Title+'</span>'+
 					'</div>'+
-					'<div class="dish-cost"><b>'+model.getDishPrice(fullMenu[i].id)+' SEK</b></div>'+
+					'<div class="dish-cost"><b>'+model.getDishPrice(fullMenu[i]).toFixed(2)+' SEK</b></div>'+
 				'</div>'
 				);
 		}
@@ -45,7 +45,7 @@ var DinnerOverviewView = function (container,model) {
 		this.dinner.append(
 		'<div class="vert-line"></div>'+
 		'<div class="total-price">'+
-			'Total:<span class="price-text"><br>'+model.getTotalMenuPrice()+' SEK</span>'+
+			'Total:<span class="price-text"><br>'+model.getTotalMenuPrice().toFixed(2)+' SEK</span>'+
 		'</div>'
 		)
 	}
