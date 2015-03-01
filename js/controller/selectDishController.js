@@ -38,8 +38,8 @@ var SelectDishController = function (view,model,stateController) {
 
 	//Shows all dishes of stated type. Can be filtered.
 	var showDishes = function(type,filter) {
-		var dishes = view.container.find("#dishes");
-		dishes.html("");
+		//var dishes = view.container.find("#dishes");
+		view.showLoading();
 		model.getAllDishes(type,filter);
 	}
 

@@ -9,13 +9,21 @@ var SelectedDishView = function (container,model) {
 	// this.container.removeClass("col-sm-9 no-side-padding");
 
 	this.showView = function(id) {
-		model.setCurrentState("selectedDish");
+		this.showLoading();
 		model.getDish(id);
 	}
 
 	this.hideView = function() {
 		console.log("---Hiding selectedDishView!");
 		container.empty();
+	}
+
+	this.showLoading = function() {
+		container.append('<div id="loading-div"><img src="images/loading.gif" alt="Loading..."></div>');
+	}
+
+	this.hideLoading = function() {
+		container.find("#loading").remove();
 	}
 
 	this.update = function(obj) {

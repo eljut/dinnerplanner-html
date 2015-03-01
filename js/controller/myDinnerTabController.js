@@ -18,7 +18,6 @@ var MyDinnerTabController = function (view,model,stateController) {
 
 	//Updates number of guests
 	view.container.on("change", "#number-of-guests", function(event) {
-		console.log("Changing number of guests");
 		var numberOfGuests = view.container.find("#number-of-guests").val();
 		model.setNumberOfGuests(numberOfGuests);
 		console.log("Changing number of guests to: "+numberOfGuests);

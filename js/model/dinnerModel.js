@@ -11,15 +11,6 @@ var DinnerModel = function() {
 	this.numberOfGuests = 3;
 	this.menu = [];
 	this.observers = [];
-	this.currentState = '';
-
-	this.setCurrentState = function(state) {
-		this.currentState = state;
-	}
-
-	this.getCurrentState = function() {
-		return this.currentState;
-	}
 
 	//Adds new observer to the array
 	this.addObserver = function(observer) {
@@ -116,6 +107,9 @@ var DinnerModel = function() {
 				}
 				this.menu.push(data);
 				this.notifyObservers("menuDishAdded");
+			},
+			error: function(jqXHR,textStatus,errorThrown) {
+				this.notifyObservers("addDishError")
 			}
 		});	
 	}
@@ -166,6 +160,9 @@ var DinnerModel = function() {
 							console.log("-----\ninside: "+i);
 							dishes[i].Description = data.Description;
 							model.notifyObservers(dishes[i]);
+						},
+						error: function(jqXHR,textStatus,errorThrown) {
+							this.notifyObservers("getDishesError")
 						}
 					});
 				})(i);
@@ -181,6 +178,9 @@ var DinnerModel = function() {
 			success: function (data) {
 				var dishes = data.Results;
 				addDescription(dishes,this);
+			},
+			error: function(jqXHR,textStatus,errorThrown) {
+				this.notifyObservers("getDishesError")
 			}
 		});
 	}
@@ -199,6 +199,9 @@ var DinnerModel = function() {
 			success: function (data) {
 				console.log(data);
 				this.notifyObservers(data);
+			},
+			error: function(jqXHR,textStatus,errorThrown) {
+				this.notifyObservers("getDishError")
 			}
 		});
 	}

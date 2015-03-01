@@ -9,7 +9,6 @@ var SelectDishView = function (container,model) {
 	model.addObserver(this);
 
 	this.showView = function() {
-		model.setCurrentState("selectDish");
 		console.log("---Showing selectDishView!");
 		this.container.addClass("col-sm-9 no-side-padding");
 		this.container.html(
@@ -28,6 +27,7 @@ var SelectDishView = function (container,model) {
 			);
 
 		//Get dishes
+		this.showLoading();
 		this.dishType = container.find("#dish-type");
 		model.getAllDishes(this.dishType.val());
 	}
@@ -38,8 +38,18 @@ var SelectDishView = function (container,model) {
 		container.empty();
 	}
 
+	this.showLoading = function() {
+		container.find("#dishes").attr("id","dishes-loading").append('<span id="loading"><img src="images/loading.gif" alt="Loading..."></span>');
+	}
+
+	this.hideLoading = function() {
+		container.find("#loading").remove();
+	}
+
 	this.update = function(obj) {
 		if(typeof obj === 'object' && !obj.hasOwnProperty("Ingredients")) {
+			this.hideLoading();
+			container.find("#dishes-loading").attr("id","dishes").html("");
 			this.dishes = container.find("#dishes");
 			var dish = obj;
 			this.dishes.append(
@@ -51,6 +61,9 @@ var SelectDishView = function (container,model) {
 					'<div class="dish-descr">'+dish.Description+'</div>'+
 				'</div>'
 				);
+		}
+		else if(obj === 'getDishesError') {
+			container.find("#dishes-loading").attr("id","dishes").html('<img src="images/getDishesError.png" alt="Error getting dishes">');
 		}
 	}
 	
