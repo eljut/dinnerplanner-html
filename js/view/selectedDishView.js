@@ -21,25 +21,26 @@ var SelectedDishView = function (container,model) {
 	this.update = function(obj) {
 		if (model.getCurrentState() === "selectedDish" && obj === "updateNumberOfGuests" && $("#selected-dish").length) {
 			container.find("#number-of-guests-2").html(model.getNumberOfGuests());
+			container.find("#dish-price").html((model.getDishPrice(this.selectedDish)).toFixed(2));
 			//this.ingredientsTable = container.find("#listOfIngredients");
 			//Clear ingredients table
 			this.ingredientsTable.html("");
 
 			//Fill ingredients table
-			var ingredients = this.selectedDish.ingredients; 
+			var ingredients = this.selectedDish.Ingredients; 
 			for ( var i = 0; i < ingredients.length; i++ ) {
 				this.ingredientsTable.append(
 					'<div class="row">'+
 						'<div class="col-sm-2 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							+(ingredients[i].quantity*model.getNumberOfGuests()).toFixed(2)+' '+ingredients[i].unit+
+							+(ingredients[i].MetricQuantity*model.getNumberOfGuests()).toFixed(2)+' '+ingredients[i].MetricUnit+
 						'</div><div class="col-sm-5 dinner-col">'+
-							ingredients[i].name+
+							ingredients[i].Name+
 						'</div><div class="col-sm-2 dinner-col">'+
 							'SEK'+
 						'</div><div class="col-sm-3 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							+(ingredients[i].price*model.getNumberOfGuests()).toFixed(2)+
+							+(ingredients[i].MetricQuantity*model.getNumberOfGuests()).toFixed(2)+
 						'</div>'+
 					'</div>'
 				);
@@ -79,7 +80,7 @@ var SelectedDishView = function (container,model) {
 							'SEK'+
 						'</div><div id="dish-price" class="col-sm-3 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							//+(model.getDishPrice(id)).toFixed(2)+
+							+(model.getDishPrice(this.selectedDish)).toFixed(2)+
 						'</div>'+
 					'</div>'+
 				'</div>'+
@@ -92,14 +93,14 @@ var SelectedDishView = function (container,model) {
 					'<div class="row">'+
 						'<div class="col-sm-2 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							+(ingredients[i].Quantity*model.getNumberOfGuests()).toFixed(2)+' '+ingredients[i].Unit+
+							+(ingredients[i].MetricQuantity*model.getNumberOfGuests()).toFixed(2)+' '+ingredients[i].MetricUnit+
 						'</div><div class="col-sm-5 dinner-col">'+
 							ingredients[i].Name+
 						'</div><div class="col-sm-2 dinner-col">'+
 							'SEK'+
 						'</div><div class="col-sm-3 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							+(model.getNumberOfGuests()).toFixed(2)+
+							+(ingredients[i].MetricQuantity*model.getNumberOfGuests()).toFixed(2)+
 						'</div>'+
 					'</div>'
 				);
