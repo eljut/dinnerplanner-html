@@ -1,3 +1,10 @@
+$white: #e6e6e7;
+$red: #fa4a48;
+$orange: #ff9a68;
+$green: #16a67a;
+$blue: #0b2027;
+$gray: #202227;
+
 /* General layout */ 
 html, body {
 	height: 100%;
@@ -78,16 +85,17 @@ pre {
 /* Navbar layout */
 .navbar {
 	width: 100%;
-	border: 2px solid;
 	padding-top: 20px;
 	padding-bottom: 30px;
-	margin-bottom: 0;
+	margin: 0;
+	border: 0;
+	/*border-bottom: 5px solid rgba(152, 152, 152, 0.25);*/
 	border-radius: 0;
-	background: rgba(235,235,235,1);
+	background: rgba(22,166,122,1);
 }
 
 .navbar-transparent {
-	background: rgba(250,210,40,0.3);
+	background: rgba(22,166,122,0.80);
 }
 
 .navbar-brand {
@@ -100,6 +108,7 @@ pre {
 	margin-bottom: 0;
 	font-size: 20px;
 	font-style: italic;
+	color: #e6e6e7 !important;
 }
 
 
@@ -221,7 +230,7 @@ pre {
 	padding-bottom: 20px;
 	padding-left: 30px;
 	padding-right: 20px;
-	background: #ffe599;
+	background: #ff9a68;
 }
 
 #select-dish-head h3 {
@@ -286,7 +295,7 @@ pre {
 	padding-bottom: 20px;
 	padding-left: 20px;
 	padding-right: 20px;
-	background: #ffe599;
+	background: #ff9a68;
 	border: 2px solid;
 }
 
