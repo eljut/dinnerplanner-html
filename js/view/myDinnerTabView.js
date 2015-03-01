@@ -81,13 +81,13 @@ var MyDinnerTabView = function (container,model) {
 			'</div>'+
 			'<hr>'+
 			'<div class="right-aligned">'+
-				'SEK <span id="total-cost">'+model.getTotalMenuPrice()+'</span>'+
+				'SEK <span id="total-cost">'+
+					+model.getTotalMenuPrice().toFixed(2)+
+				'</span>'+
 			'</div>'+
 			'<div id="confirm-div"></div>'+
 			'</div>'
 		);
-
-		//this.numberOfGuests = container.find("#number-of-guests");
 
 		this.confirmDiv = container.find("#confirm-div");
 		this.confirmDiv.html(
@@ -108,17 +108,16 @@ var MyDinnerTabView = function (container,model) {
 		this.container.children().remove();
 	}
 
-	this.setPending = function(id) {
+	this.setPending = function(dish) {
 		container.find("#pending").addClass("pending-active");
-		container.find("#pending-dish").html(model.getDishPrice(id));
+		container.find("#pending-dish").html(model.getDishPrice(dish));
 
 		//Set pending total price
-		var pendingDish = model.getDish(id);
-		var replacedDish = model.getSelectedDish(pendingDish.type);
+		var replacedDish = model.getSelectedDish(dish.Category);
 		var currentMenuPrice = model.getTotalMenuPrice();
-		var pendingDishPrice = model.getDishPrice(pendingDish.id);
+		var pendingDishPrice = model.getDishPrice(dish);
 		if(replacedDish) {
-			var replacedDishPrice = model.getDishPrice(replacedDish.id);
+			var replacedDishPrice = model.getDishPrice(replacedDish);
 			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice-replacedDishPrice);
 		} else {
 			container.find("#total-cost").html(currentMenuPrice+pendingDishPrice);
@@ -133,19 +132,6 @@ var MyDinnerTabView = function (container,model) {
 
 	this.update = function(obj) {
 		if (obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
-			
-			// if (obj === "menuDishRemoved") {
-			// 	if (typeof model.getSelectedDish('starter') === 'undefined') {
-			// 		container.find("#menu-starter").remove();
-			// 	}
-			// 	if (model.getSelectedDish('main') === null) {
-			// 		container.find("#menu-main").remove();
-			// 	}
-			// 	if (model.getSelectedDish('dessert') === null) {
-			// 		container.find("#menu-dessert").remove();
-			// 	}
-			// }
-
 			// Remove dishes from menu
 			container.find("#menu-starter").empty().removeClass("row menu-item");
 			container.find("#menu-main").empty().removeClass("row menu-item");
@@ -153,9 +139,9 @@ var MyDinnerTabView = function (container,model) {
 			
 			// Add dishes to menu
 			var menu = model.getFullMenu();
-			console.log(menu);
 			var menuItemContent = '';
 			for ( var i = 0; i < menu.length; i++ ) {
+				console.log("MENU!!!!!!!! "+menu[i].Title);
 				menuItemContent =  
 					'<a href="#remove" title="Remove" class="remove" data-dish-id="'+menu[i].RecipeID+'">X</a>'+
 					'<div class="col-sm-3 dinner-col">'+
@@ -165,25 +151,25 @@ var MyDinnerTabView = function (container,model) {
 						menu[i].Title+
 					'</div>'+
 					'<div class="col-sm-3 dinner-col">'+
-						model.getDishPrice(menu[i].RecipeID)+
+						+model.getDishPrice(menu[i]).toFixed(2)+
 					'</div>'
 				switch(menu[i].Category) {
-					case "starter":
+					case "Appetizers":
 						$("#menu-starter").addClass("row menu-item");
 						$("#menu-starter").html(menuItemContent);
 						break;
-					case "main dish":
+					case "Main Dish":
 						$("#menu-main").addClass("row menu-item");
 						$("#menu-main").html(menuItemContent);
 						break;
-					case "dessert":
+					case "Desserts":
 						$("#menu-dessert").addClass("row menu-item");
 						$("#menu-dessert").html(menuItemContent);
 						break;
 				}
 			}
 
-			container.find("#total-cost").html(model.getTotalMenuPrice());
+			container.find("#total-cost").html(+model.getTotalMenuPrice().toFixed(2));
 
 			if (obj === "menuDishAdded") {
 				this.clearPending();
@@ -199,6 +185,9 @@ var MyDinnerTabView = function (container,model) {
 			} else {
 				this.confirmDiv.find("#confirm-dinner-btn").attr("disabled", false);
 			}
+		}
+		else if(typeof obj === 'object' && obj.hasOwnProperty("Ingredients")) {
+			this.setPending(obj);
 		}
 	}
 

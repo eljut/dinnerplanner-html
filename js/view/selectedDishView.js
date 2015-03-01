@@ -99,7 +99,7 @@ var SelectedDishView = function (container,model) {
 							'SEK'+
 						'</div><div class="col-sm-3 dinner-col">'+
 							//Next plus sign drops extra zeroes at end of number
-							+(1*model.getNumberOfGuests()).toFixed(2)+
+							+(model.getNumberOfGuests()).toFixed(2)+
 						'</div>'+
 					'</div>'
 				);

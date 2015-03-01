@@ -29,7 +29,7 @@ var SelectDishView = function (container,model) {
 
 		//Get dishes
 		this.dishType = container.find("#dish-type");
-		model.getAllDishes(this.dishType.val());
+		//model.getAllDishes(this.dishType.val());
 	}
 
 	this.hideView = function() {

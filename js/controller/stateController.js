@@ -44,7 +44,6 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 		console.log("Visar maträtt med id: "+id);
 		selectDishView.hideView();
 		selectedDishView.showView(id);
-		//myDinnerTabView.setPending(id);
 	}
 
 	//Goes from selectedDishView to selectDishView

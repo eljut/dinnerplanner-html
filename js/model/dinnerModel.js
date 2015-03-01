@@ -1,5 +1,10 @@
 //DinnerModel Object constructor
 var DinnerModel = function() {
+	/*
+	Keys:
+	other: dvxveCJB1QugC806d29k1cE6x23Nt64O
+	FB: dvxltQK4R4bLekoy63EflsMu6R0q44ze
+	*/
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
 	// and selected dinner options for dinner menu
@@ -59,7 +64,7 @@ var DinnerModel = function() {
 	this.getAllIngredients = function() {
 		var ingredients = [];
 		for(key in this.menu) {
-			ingredients = ingredients.concat(this.menu[key].ingredients);
+			ingredients = ingredients.concat(this.menu[key].Ingredients);
 		}
 		return ingredients;
 	}
@@ -69,27 +74,25 @@ var DinnerModel = function() {
 		var ingredients = this.getAllIngredients();
 		var totalPrice = 0;
 		for(key in ingredients){
-			totalPrice += parseFloat(ingredients[key].price) * this.numberOfGuests;
+			totalPrice += parseFloat(ingredients[key].MetricQuantity) * this.numberOfGuests;
 		}
 		return totalPrice;
 
 	}
 
 	//Returns the price of a dish (all the ingredients multiplied by number of guests).
-	// this.getDishPrice = function(id) {
-	// 	var dish = this.getDish(id);
-	// 	var price = 0;
-	// 	for(key in dish.ingredients) {
-	// 		price += parseFloat(dish.ingredients[key].price) * this.numberOfGuests;
-	// 	}
-	// 	return price;
-	// }
+	this.getDishPrice = function(dish) {
+		var price = 0;
+		for(key in dish.Ingredients) {
+			price += parseFloat(dish.Ingredients[key].MetricQuantity) * this.numberOfGuests;
+		}
+		return price;
+	}
 
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-
-		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
 		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
 		console.log("url: "+url);
 		$.ajax({
@@ -100,9 +103,7 @@ var DinnerModel = function() {
 			url: url,
 			success: function (data) {
 				console.log(data);
-				console.log("Selected dish is: "+data)
-				this.notifyObservers(data);
-
+				var dish = data;
 				for(key in this.menu) {
 					if(this.menu[key].RecipeID != dish.RecipeID) {
 						if(this.menu[key].Category == dish.Category) {
@@ -114,19 +115,15 @@ var DinnerModel = function() {
 					}
 				}
 				this.menu.push(data);
-				console.log(menu);
 				this.notifyObservers("menuDishAdded");
 			}
-		});
-
-		//var dish = this.getDish(id);
-		
+		});	
 	}
 
 	//Removes dish from menu
 	this.removeDishFromMenu = function(id) {
 		for(key in this.menu) {
-			if(this.menu[key].id == id){
+			if(this.menu[key].RecipeID == id){
 				var index = this.menu.indexOf(this.menu[key]);
 				this.menu.splice(index,1);
 				this.notifyObservers("menuDishRemoved");
@@ -145,7 +142,7 @@ var DinnerModel = function() {
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
 		filter = typeof filter !== 'undefined' ? filter : '';
-		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=3&any_kw="+type+"+"+filter+"&api_key="+apiKey;
 		console.log("Filter is:"+filter);
 		console.log("url is: "+url);
@@ -182,7 +179,6 @@ var DinnerModel = function() {
 			context: this, //this == dinnerModel
 			url: url,
 			success: function (data) {
-				console.log("Check if this==model--->this.numberOfGuests(): "+this.getNumberOfGuests());
 				var dishes = data.Results;
 				addDescription(dishes,this);
 			}
@@ -191,7 +187,7 @@ var DinnerModel = function() {
 
 	//Function that returns a dish of specific ID
 	this.getDish = function (id) {
-		var apiKey = "dvxveCJB1QugC806d29k1cE6x23Nt64O";
+		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
 		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
 		console.log("url: "+url);
 		$.ajax({
@@ -201,263 +197,10 @@ var DinnerModel = function() {
 			context: this, //this == dinnerModel
 			url: url,
 			success: function (data) {
-				console.log("Check if this==model--->this.numberOfGuests(): "+this.getNumberOfGuests());
 				console.log(data);
 				this.notifyObservers(data);
 			}
 		});
 	}
-
-
-	// the dishes variable contains an array of all the 
-	// dishes in the database. each dish has id, name, type,
-	// image (name of the image file), description and
-	// array of ingredients. Each ingredient has name, 
-	// quantity (a number), price (a number) and unit (string 
-	// defining the unit i.e. "g", "slices", "ml". Unit
-	// can sometimes be empty like in the example of eggs where
-	// you just say "5 eggs" and not "5 pieces of eggs" or anything else.
-	/*var dishes = [{
-		'id':1,
-		'name':'French toast',
-		'type':'starter',
-		'image':'toast.jpg',
-		'description':"In a large mixing bowl, beat the eggs. Add the milk, brown sugar and nutmeg; stir well to combine. Soak bread slices in the egg mixture until saturated. Heat a lightly oiled griddle or frying pan over medium high heat. Brown slices on both sides, sprinkle with cinnamon and serve hot.",
-		'ingredients':[{ 
-			'name':'eggs',
-			'quantity':0.5,
-			'unit':'',
-			'price':10
-			},{
-			'name':'milk',
-			'quantity':30,
-			'unit':'ml',
-			'price':6
-			},{
-			'name':'brown sugar',
-			'quantity':7,
-			'unit':'g',
-			'price':1
-			},{
-			'name':'ground nutmeg',
-			'quantity':0.5,
-			'unit':'g',
-			'price':12
-			},{
-			'name':'white bread',
-			'quantity':2,
-			'unit':'slices',
-			'price':2
-			}]
-		},{
-		'id':2,
-		'name':'Sourdough Starter',
-		'type':'starter',
-		'image':'sourdough.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'active dry yeast',
-			'quantity':0.5,
-			'unit':'g',
-			'price':4
-			},{
-			'name':'warm water',
-			'quantity':30,
-			'unit':'ml',
-			'price':0
-			},{
-			'name':'all-purpose flour',
-			'quantity':15,
-			'unit':'g',
-			'price':2
-			}]
-		},{
-		'id':3,
-		'name':'Baked Brie with Peaches',
-		'type':'starter',
-		'image':'bakedbrie.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'round Brie cheese',
-			'quantity':10,
-			'unit':'g',
-			'price':8
-			},{
-			'name':'raspberry preserves',
-			'quantity':15,
-			'unit':'g',
-			'price':10
-			},{
-			'name':'peaches',
-			'quantity':1,
-			'unit':'',
-			'price':4
-			}]
-		},{
-		'id':100,
-		'name':'Meat balls',
-		'type':'main dish',
-		'image':'meatballs.jpg',
-		'description':"Preheat an oven to 400 degrees F (200 degrees C). Place the beef into a mixing bowl, and season with salt, onion, garlic salt, Italian seasoning, oregano, red pepper flakes, hot pepper sauce, and Worcestershire sauce; mix well. Add the milk, Parmesan cheese, and bread crumbs. Mix until evenly blended, then form into 1 1/2-inch meatballs, and place onto a baking sheet. Bake in the preheated oven until no longer pink in the center, 20 to 25 minutes.",
-		'ingredients':[{ 
-			'name':'extra lean ground beef',
-			'quantity':115,
-			'unit':'g',
-			'price':20
-			},{
-			'name':'sea salt',
-			'quantity':0.7,
-			'unit':'g',
-			'price':3
-			},{
-			'name':'small onion, diced',
-			'quantity':0.25,
-			'unit':'',
-			'price':2
-			},{
-			'name':'garlic salt',
-			'quantity':0.7,
-			'unit':'g',
-			'price':2
-			},{
-			'name':'Italian seasoning',
-			'quantity':0.6,
-			'unit':'g',
-			'price':3
-			},{
-			'name':'dried oregano',
-			'quantity':0.3,
-			'unit':'g',
-			'price':3
-			},{
-			'name':'crushed red pepper flakes',
-			'quantity':0.6,
-			'unit':'g',
-			'price':3
-			},{
-			'name':'Worcestershire sauce',
-			'quantity':6,
-			'unit':'ml',
-			'price':7
-			},{
-			'name':'milk',
-			'quantity':20,
-			'unit':'ml',
-			'price':4
-			},{
-			'name':'grated Parmesan cheese',
-			'quantity':5,
-			'unit':'g',
-			'price':8
-			},{
-			'name':'seasoned bread crumbs',
-			'quantity':15,
-			'unit':'g',
-			'price':4
-			}]
-		},{
-		'id':101,
-		'name':'MD 2',
-		'type':'main dish',
-		'image':'bakedbrie.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ingredient 1',
-			'quantity':1,
-			'unit':'pieces',
-			'price':8
-			},{
-			'name':'ingredient 2',
-			'quantity':15,
-			'unit':'g',
-			'price':7
-			},{
-			'name':'ingredient 3',
-			'quantity':10,
-			'unit':'ml',
-			'price':4
-			}]
-		},{
-		'id':102,
-		'name':'MD 3',
-		'type':'main dish',
-		'image':'meatballs.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ingredient 1',
-			'quantity':2,
-			'unit':'pieces',
-			'price':8
-			},{
-			'name':'ingredient 2',
-			'quantity':10,
-			'unit':'g',
-			'price':7
-			},{
-			'name':'ingredient 3',
-			'quantity':5,
-			'unit':'ml',
-			'price':4
-			}]
-		},{
-		'id':103,
-		'name':'MD 4',
-		'type':'main dish',
-		'image':'meatballs.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ingredient 1',
-			'quantity':1,
-			'unit':'pieces',
-			'price':4
-			},{
-			'name':'ingredient 2',
-			'quantity':12,
-			'unit':'g',
-			'price':7
-			},{
-			'name':'ingredient 3',
-			'quantity':6,
-			'unit':'ml',
-			'price':4
-			}]
-		},{
-		'id':200,
-		'name':'Chocolate Ice cream',
-		'type':'dessert',
-		'image':'icecream.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ice cream',
-			'quantity':100,
-			'unit':'ml',
-			'price':6
-			}]
-		},{
-		'id':201,
-		'name':'Vanilla Ice cream',
-		'type':'dessert',
-		'image':'icecream.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ice cream',
-			'quantity':100,
-			'unit':'ml',
-			'price':6
-			}]
-		},{
-		'id':202,
-		'name':'Strawberry',
-		'type':'dessert',
-		'image':'icecream.jpg',
-		'description':"Here is how you make it... Lore ipsum...",
-		'ingredients':[{ 
-			'name':'ice cream',
-			'quantity':100,
-			'unit':'ml',
-			'price':6
-			}]
-		}
-	];*/
 
 }
