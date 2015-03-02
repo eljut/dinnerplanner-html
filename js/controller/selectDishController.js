@@ -3,8 +3,7 @@ var SelectDishController = function (view,model,stateController) {
 
 	//Change Dishes by type
 	view.container.on("change", "#dish-type", function(event) {
-		console.log("---Changing dishes by dish type!");
-		console.log("Value: " + this.value + "!");
+		console.log("---Changing dishes by dish type: "+this.value);
 		showDishes(this.value);
 	});
 
@@ -12,9 +11,7 @@ var SelectDishController = function (view,model,stateController) {
 	view.container.on("click", "#search-button", function(event) {
 		var keyWords = view.container.find("#search-bar").val();
 		var type = view.container.find("#dish-type").val();
-
 		console.log("---Searching with key words: "+keyWords+" and type: "+type+"\n");
-
 		showDishes(type,keyWords);
 	});
 
@@ -23,9 +20,7 @@ var SelectDishController = function (view,model,stateController) {
 		if(event.which == 13) {
 			var keyWords = view.container.find("#search-bar").val();
 			var type = view.container.find("#dish-type").val();
-
 			console.log("---Searching with key words: "+keyWords+" and type: "+type+"\n");
-
 			showDishes(type,keyWords);
 		}
 	});
@@ -38,7 +33,6 @@ var SelectDishController = function (view,model,stateController) {
 
 	//Shows all dishes of stated type. Can be filtered.
 	var showDishes = function(type,filter) {
-		//var dishes = view.container.find("#dishes");
 		view.showLoading();
 		model.getAllDishes(type,filter);
 	}

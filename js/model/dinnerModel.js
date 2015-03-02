@@ -6,12 +6,14 @@ var DinnerModel = function() {
 	FB: dvxltQK4R4bLekoy63EflsMu6R0q44ze
 	Ellinor: dvxy2iVl2OIUF0Hx3rKp1t0t3GfA6v9Q
 	*/
- 
-	//TODO Lab 2 implement the data structure that will hold number of guest
-	// and selected dinner options for dinner menu
+
 	this.numberOfGuests = 3;
 	this.menu = [];
 	this.observers = [];
+	var keys = ['dvxveCJB1QugC806d29k1cE6x23Nt64O',
+				'dvxltQK4R4bLekoy63EflsMu6R0q44ze',
+				'dvxy2iVl2OIUF0Hx3rKp1t0t3GfA6v9Q'];
+	this.key = keys[2];
 
 	//Adds new observer to the array
 	this.addObserver = function(observer) {
@@ -84,7 +86,7 @@ var DinnerModel = function() {
 	//Adds the passed dish to the menu. If the dish of that type already exists on the menu
 	//it is removed from the menu and the new one added.
 	this.addDishToMenu = function(id) {
-		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
+		var apiKey = this.key;
 		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
 		console.log("url: "+url);
 		$.ajax({
@@ -100,9 +102,9 @@ var DinnerModel = function() {
 					if(this.menu[key].RecipeID != dish.RecipeID) {
 						if(this.menu[key].Category == dish.Category) {
 							this.removeDishFromMenu(this.menu[key].RecipeID);
-							//this.notifyObservers("menuDishReplaced");
 						}
 					} else {
+						this.notifyObservers("dishAlreadyInMenu");
 						return;
 					}
 				}
@@ -137,17 +139,15 @@ var DinnerModel = function() {
 	//if you don't pass any filter all the dishes will be returned
 	this.getAllDishes = function (type,filter) {
 		filter = typeof filter !== 'undefined' ? filter : '';
-		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
+		var apiKey = this.key;
 		var url = "http://api.bigoven.com/recipes?pg=1&rpp=3&any_kw="+type+"+"+filter+"&api_key="+apiKey;
-		console.log("Filter is:"+filter);
-		console.log("url is: "+url);
+		console.log("getAllDishes url: "+url);
 
 		//Adds description to the dishes
 		//Notifies observers with the dish which had a description added
 		var addDescription = function(dishes,model) {
 			var recipeID = '';
 			for(var i = 0; i < dishes.length; i++)  {
-				console.log("outside: "+i);
 				recipeID = dishes[i].RecipeID;
 				url = "http://api.bigoven.com/recipe/"+recipeID+"?api_key="+apiKey;
 				(function(i) {
@@ -158,7 +158,6 @@ var DinnerModel = function() {
 						context: model,
 						url: url,
 						success: function (data) {
-							console.log("-----\ninside: "+i);
 							dishes[i].Description = data.Description;
 							model.notifyObservers(dishes[i]);
 						},
@@ -188,9 +187,9 @@ var DinnerModel = function() {
 
 	//Function that returns a dish of specific ID
 	this.getDish = function (id) {
-		var apiKey = "dvxltQK4R4bLekoy63EflsMu6R0q44ze";
+		var apiKey = this.key;
 		var url = "http://api.bigoven.com/recipe/"+id+"?api_key="+apiKey;
-		console.log("url: "+url);
+		console.log("getDish url: "+url);
 		$.ajax({
 			type: "GET",
 			dataType: 'json',
@@ -198,7 +197,6 @@ var DinnerModel = function() {
 			context: this, //this == dinnerModel
 			url: url,
 			success: function (data) {
-				console.log(data);
 				this.notifyObservers(data);
 			},
 			error: function(jqXHR,textStatus,errorThrown) {

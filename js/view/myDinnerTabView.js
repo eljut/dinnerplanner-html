@@ -130,8 +130,18 @@ var MyDinnerTabView = function (container,model) {
 		container.find("#total-cost").html(+model.getTotalMenuPrice().toFixed(2));
 	}
 
+	this.showLoading = function() {
+		this.hideLoading();
+		container.find("#menu").append('<span id="menu-loading"><img src="images/loadingMenu.gif" alt="Loading..."></span>');
+	}
+
+	this.hideLoading = function() {
+		container.find("#menu-loading").remove();
+	}
+
 	this.update = function(obj) {
-		if (obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
+		if(obj === "menuDishAdded" || obj === "menuDishRemoved" || obj === "updateNumberOfGuests") {
+			this.hideLoading();
 			// Remove dishes from menu
 			container.find("#menu-starter").empty().removeClass("row menu-item");
 			container.find("#menu-main").empty().removeClass("row menu-item");
@@ -187,6 +197,16 @@ var MyDinnerTabView = function (container,model) {
 		}
 		else if(typeof obj === 'object' && obj.hasOwnProperty("Ingredients")) {
 			this.setPending(obj);
+		}
+		else if(obj === "dishAlreadyInMenu") {
+			this.hideLoading();
+		}
+		else if(obj === 'addDishError') {
+			var menuLoading = container.find("#menu-loading");
+			menuLoading.html(
+				//'<img src="images/addDishError.png" alt="Error adding dish to menu">'
+				'<span id="add-dish-error">Error adding dish to menu.</span>'
+			);
 		}
 	}
 

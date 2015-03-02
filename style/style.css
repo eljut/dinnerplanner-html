@@ -43,7 +43,7 @@ pre {
 
 /* First screen layout */
 .first-screen {
-	background: url(../images/first.gif) no-repeat center center fixed;
+	background: url(../images/first.jpg) no-repeat center center fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
@@ -213,6 +213,11 @@ pre {
 
 .pending-active {
 	border: 2px solid #aaa;
+}
+
+#add-dish-error {
+	color: #fa4a48;
+	font-size: 16pt;
 }
 
 /* "Select Dish"-page layout */ 

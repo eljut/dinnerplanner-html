@@ -5,7 +5,7 @@ var SelectedDishController = function (view,model,stateController) {
 		var id = $(this).data("dish-id");
 		console.log("Adding dish to menu: "+id);
 		model.addDishToMenu(id);
-		stateController.backFromSelectedDish();
+		stateController.backFromSelectedDish(true);
 	});
 
 	view.container.on("click", "#back-btn", function(event) {

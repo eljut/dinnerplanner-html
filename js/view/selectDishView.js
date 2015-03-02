@@ -18,9 +18,9 @@ var SelectDishView = function (container,model) {
 				'<input id="search-bar" type="search" placeholder="Enter key words">'+
 				'<button id="search-button">Search</button>'+
 				'<select id="dish-type">'+
-					'<option value="appetizer">Starter</option>'+
-					'<option value="main dish">Main</option>'+
-					'<option value="dessert">Dessert</option>'+
+					'<option value="Appetizer">Starter</option>'+
+					'<option value="Main Dish">Main</option>'+
+					'<option value="Desserts">Dessert</option>'+
 				'</select>'+
 			'</div>'+
 			'<div id="dishes"></div>'

@@ -47,7 +47,11 @@ var StateController = function (navbarView,backgroundView,startMessageView,myDin
 	}
 
 	//Goes from selectedDishView to selectDishView
-	this.backFromSelectedDish = function() {
+	//dishAdded==true if a dish was added to the menu
+	this.backFromSelectedDish = function(dishAdded) {
+		if(dishAdded) {
+			myDinnerTabView.showLoading();
+		}
 		selectedDishView.hideView();
 		selectDishView.showView();
 		myDinnerTabView.clearPending();

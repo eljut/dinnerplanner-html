@@ -6,8 +6,6 @@ var SelectedDishView = function (container,model) {
 	//Add this view as an observer of model
 	model.addObserver(this);
 
-	// this.container.removeClass("col-sm-9 no-side-padding");
-
 	this.showView = function(id) {
 		this.showLoading();
 		model.getDish(id);
@@ -27,7 +25,7 @@ var SelectedDishView = function (container,model) {
 	}
 
 	this.update = function(obj) {
-		if (obj === "updateNumberOfGuests" && $("#selected-dish").length) {
+		if(obj === "updateNumberOfGuests" && $("#selected-dish").length) {
 			container.find("#number-of-guests-2").html(model.getNumberOfGuests());
 			container.find("#dish-price").html((model.getDishPrice(this.selectedDish)).toFixed(2));
 			//this.ingredientsTable = container.find("#listOfIngredients");
@@ -53,11 +51,8 @@ var SelectedDishView = function (container,model) {
 					'</div>'
 				);
 			}
-
-			//container.find("#dish-price").html(+model.getDishPrice(this.selectedDish.id).toFixed(2));
 		}
-
-		if (typeof obj === 'object' && obj.hasOwnProperty("Ingredients")) {
+		else if(typeof obj === 'object' && obj.hasOwnProperty("Ingredients")) {
 			this.selectedDish = obj;
 
 			this.container.html(
@@ -113,6 +108,13 @@ var SelectedDishView = function (container,model) {
 					'</div>'
 				);
 			}
+		}
+		else if(obj === 'getDishError') {
+			var loadingDiv = container.find("#loading-div").attr("id","get-dish-error");
+			loadingDiv.html(
+				'<img src="images/getDishError.png" alt="Error getting dish">'+
+				'<button id="back-btn" class="arrow-box" type="button">Back to Select Dish</button>'
+			);
 		}
 	}
 	

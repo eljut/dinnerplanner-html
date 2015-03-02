@@ -5,7 +5,6 @@ var MyDinnerTabController = function (view,model,stateController) {
 	view.container.on("click", ".remove", function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		console.log("Removing dish");
 		var id = $(this).data("dish-id");
 		model.removeDishFromMenu(id);
 		console.log("Removed dish from menu with id: "+id);
@@ -25,7 +24,6 @@ var MyDinnerTabController = function (view,model,stateController) {
 
 	//Selects dish on menu
 	view.container.on("click", ".menu-item", function(event) {
-		console.log("menu-starter clicked");
 		var id = $(this).children().data("dish-id");
 		console.log("Clicked dish with id: "+id);
 		if(typeof id === 'undefined') {
