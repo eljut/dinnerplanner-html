@@ -215,6 +215,10 @@ pre {
 	border: 2px solid #aaa;
 }
 
+#menu-loading {
+	text-align: center;
+}
+
 #add-dish-error {
 	color: #fa4a48;
 	font-size: 16pt;

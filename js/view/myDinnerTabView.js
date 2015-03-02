@@ -132,7 +132,7 @@ var MyDinnerTabView = function (container,model) {
 
 	this.showLoading = function() {
 		this.hideLoading();
-		container.find("#menu").append('<span id="menu-loading"><img src="images/loadingMenu.gif" alt="Loading..."></span>');
+		container.find("#menu").append('<div id="menu-loading"><img src="images/loadingMenu.gif" alt="Loading..."></div>');
 	}
 
 	this.hideLoading = function() {
@@ -205,7 +205,7 @@ var MyDinnerTabView = function (container,model) {
 			var menuLoading = container.find("#menu-loading");
 			menuLoading.html(
 				//'<img src="images/addDishError.png" alt="Error adding dish to menu">'
-				'<span id="add-dish-error">Error adding dish to menu.</span>'
+				'<div id="add-dish-error">Error adding dish to menu.</div>'
 			);
 		}
 	}
