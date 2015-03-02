@@ -4,6 +4,7 @@ var DinnerModel = function() {
 	Keys:
 	other: dvxveCJB1QugC806d29k1cE6x23Nt64O
 	FB: dvxltQK4R4bLekoy63EflsMu6R0q44ze
+	Ellinor: dvxy2iVl2OIUF0Hx3rKp1t0t3GfA6v9Q
 	*/
  
 	//TODO Lab 2 implement the data structure that will hold number of guest
