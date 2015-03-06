@@ -140,7 +140,7 @@ var DinnerModel = function() {
 	this.getAllDishes = function (type,filter) {
 		filter = typeof filter !== 'undefined' ? filter : '';
 		var apiKey = this.key;
-		var url = "http://api.bigoven.com/recipes?pg=1&rpp=3&any_kw="+type+"+"+filter+"&api_key="+apiKey;
+		var url = "http://api.bigoven.com/recipes?pg=1&rpp=4&any_kw="+type+"+"+filter+"&api_key="+apiKey;
 		console.log("getAllDishes url: "+url);
 
 		//Adds description to the dishes
@@ -177,7 +177,12 @@ var DinnerModel = function() {
 			url: url,
 			success: function (data) {
 				var dishes = data.Results;
-				addDescription(dishes,this);
+				if(data.Results.length === 0) {
+					this.notifyObservers("noDishesFound");
+				}
+				else {
+					addDescription(dishes,this);
+				}
 			},
 			error: function(jqXHR,textStatus,errorThrown) {
 				this.notifyObservers("getDishesError")
