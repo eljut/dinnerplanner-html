@@ -244,7 +244,7 @@ pre {
 }
 
 #dishes {
-	max-height: 640px;
+	max-height: 710px;
 	padding: 20px;
 	overflow-y: scroll;
 }
@@ -264,6 +264,10 @@ pre {
 
 #select-dish .dish-head {
 	cursor: pointer;
+}
+
+#select-dish .dish-head img {
+	max-width: 100%;
 }
 
 .dish-name {
