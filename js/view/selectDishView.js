@@ -62,6 +62,9 @@ var SelectDishView = function (container,model) {
 				'</div>'
 				);
 		}
+		else if(obj === 'noDishesFound') {
+			container.find("#dishes-loading").attr("id","dishes").html('No dishes found!');
+		}
 		else if(obj === 'getDishesError') {
 			container.find("#dishes-loading").attr("id","dishes").html('<img src="images/getDishesError.png" alt="Error getting dishes">');
 		}
